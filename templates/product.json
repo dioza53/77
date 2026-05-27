@@ -14,9 +14,50 @@
       "settings": {
         "product": "צמיד-lumibrace-signature-הזיכרון-שלך-תמיד-איתך"
       }
+    },
+    "how_it_works_xGxpyW": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_6TpYxd": {
+          "type": "step",
+          "settings": {
+            "title": "מעלים תמונה",
+            "description": "בוחרים את הרגע הכי מרגש שלכם ומעלים אותו ישירות לאתר. המערכת תעזור לכם למרכז את התמונה.",
+            "video_url": ""
+          }
+        },
+        "step_eBcntA": {
+          "type": "step",
+          "settings": {
+            "title": "אנחנו מייצרים",
+            "description": "האמנים שלנו חורטים את התמונה בטכנולוגיית ננו-לייזר בתוך קריסטל HD איכותי, המשובץ בעבודת יד בצמיד.",
+            "video_url": ""
+          }
+        },
+        "step_YDtMaw": {
+          "type": "step",
+          "settings": {
+            "title": "אתם מקרינים",
+            "description": "הצמידו את העין או השתמשו בפנס הטלפון כדי להקרין את הזיכרון שלכם בגדול. רגע קסום שמלווה אתכם.",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_6TpYxd",
+        "step_eBcntA",
+        "step_YDtMaw"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "badge": "התהליך שלנו",
+        "heading": "איך הקסם קורה?",
+        "subheading": "3 שלבים פשוטים בדרך לצמיד הכי אישי ומרגש שיהיה לכם אי פעם."
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "how_it_works_xGxpyW"
   ]
 }

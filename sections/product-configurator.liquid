@@ -4,6 +4,8 @@
 {% endcomment %}
 
 {%- assign product = product | default: all_products[section.settings.product] | default: collections.all.products.first -%}
+
+{%- if product != blank -%}
 {%- assign first_variant = product.selected_or_first_available_variant -%}
 
 <section class="product container" data-product>
@@ -311,9 +313,17 @@
     </div>
   </div>
 </div>
+{%- else -%}
+  <div class="container text-center py-20" style="padding: 100px 20px; text-align: center; background: #0d0d0d; color: #fff;">
+    <h2 class="gold-grad" style="font-size: 28px; margin-bottom: 15px; font-weight: 700; font-family: Heebo, sans-serif;">LumiBrace Configurator</h2>
+    <p style="color: rgba(245,245,240,0.6); max-width: 500px; margin: 0 auto; font-size: 16px; font-family: Heebo, sans-serif;">
+      אנא בחר מוצר להצגה במקודד/קונפיגורטור בהגדרות המקטע (או הוסף מוצר לחנות).
+    </p>
+  </div>
+{%- endif -%}
 
 <script>
-  window.__product = {{ product | json }};
+  window.__product = {{ product | json | default: 'null' }};
 </script>
 
 {% schema %}

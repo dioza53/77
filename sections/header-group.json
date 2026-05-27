@@ -1,5 +1,30 @@
 {
   "type": "header",
-  "sections": { "header": { "type": "header" } },
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "announcement_text": "מבצע: 50% הנחה לזמן מוגבל · משלוח לכל הארץ 🚚"
+      },
+      "blocks": {
+        "link1": {
+          "type": "link",
+          "settings": {
+            "label": "הסיפור שלנו",
+            "url": "#our-story"
+          }
+        },
+        "link2": {
+          "type": "link",
+          "settings": {
+            "label": "מעקב משלוח",
+            "url": "/pages/track-order"
+          }
+        }
+      },
+      "block_order": ["link1", "link2"]
+    }
+  },
   "order": ["header"]
 }

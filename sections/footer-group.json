@@ -1,5 +1,37 @@
 {
   "type": "footer",
-  "sections": { "footer": { "type": "footer" } },
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tagline": "צמיד הקרנה יוקרתי המכיל את הרגעים היפים ביותר שלכם. איכות ללא פשרות, עיצוב נצחי ורגש שעובר בכל מבט."
+      },
+      "blocks": {
+        "fl1": {
+          "type": "footer_link",
+          "settings": {
+            "link_title": "תקנון האתר ותנאי שימוש",
+            "link_url": "/"
+          }
+        },
+        "fl2": {
+          "type": "footer_link",
+          "settings": {
+            "link_title": "מדיניות משלוחים והחזרות",
+            "link_url": "/"
+          }
+        },
+        "fl3": {
+          "type": "footer_link",
+          "settings": {
+            "link_title": "שירות לקוחות",
+            "link_url": "#contact"
+          }
+        }
+      },
+      "block_order": ["fl1", "fl2", "fl3"]
+    }
+  },
   "order": ["footer"]
 }

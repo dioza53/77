@@ -1,0 +1,99 @@
+{% comment %}
+  LumiBrace Contact Form Section — Native Shopify contact form with premium dark card layout
+{% endcomment %}
+
+<section class="section" style="background-color: var(--bg); position: relative; overflow: hidden;" id="contact">
+  <div class="container" style="max-width: 800px; position: relative; z-index: 2;">
+    <div class="card" style="padding: 48px; border-radius: 40px; background-color: var(--bg-card); border-color: rgba(212,175,55,0.15); box-shadow: 0 15px 50px rgba(0,0,0,0.4);">
+      
+      <div class="section-head" style="margin-bottom: 32px;">
+        <span>{{ section.settings.badge }}</span>
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.subheading }}</p>
+      </div>
+
+      {%- form 'contact', class: 'contact-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div style="text-align: center; padding: 24px 0;">
+            <div style="width: 72px; height: 72px; border-radius: 50%; background: var(--gold-soft); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px;">
+              ✓
+            </div>
+            <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">ההודעה נשלחה בהצלחה!</h3>
+            <p class="muted">תודה שפניתם אלינו. צוות LumiBrace ידאג לחזור אליכם במייל בהקדם האפשרי.</p>
+          </div>
+        {%- else -%}
+          
+          {%- if form.errors -%}
+            <div style="background: rgba(255,77,77,0.1); border: 1px solid rgba(255,77,77,0.3); border-radius: 12px; padding: 12px 16px; margin-bottom: 24px; color: #ff6666; font-size: 13px;">
+              שגיאה בשליחת הטופס. אנא ודאו שכל השדות מלאים בצורה תקינה.
+            </div>
+          {%- endif -%}
+
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            {% comment %} Name Input {% endcomment %}
+            <div class="option-group" style="margin-bottom: 0;">
+              <label class="option-group__label" for="contact-name">שם מלא</label>
+              <input 
+                type="text" 
+                id="contact-name" 
+                name="contact[name]" 
+                value="{{ form.name }}"
+                placeholder="איך קוראים לכם?" 
+                required 
+                style="width: 100%; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; color: white; font-size: 14px; outline: none; transition: var(--transition);"
+                onfocus="this.style.borderColor='var(--gold)';"
+                onblur="this.style.borderColor='var(--border)';"
+              >
+            </div>
+
+            {% comment %} Email Input {% endcomment %}
+            <div class="option-group" style="margin-bottom: 0;">
+              <label class="option-group__label" for="contact-email">אימייל לחזרה</label>
+              <input 
+                type="email" 
+                id="contact-email" 
+                name="contact[email]" 
+                value="{{ form.email }}"
+                placeholder="כתובת המייל שלכם..." 
+                required 
+                style="width: 100%; padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; color: white; font-size: 14px; outline: none; transition: var(--transition); text-align: right; direction: ltr;"
+                onfocus="this.style.borderColor='var(--gold)';"
+                onblur="this.style.borderColor='var(--border)';"
+              >
+            </div>
+
+            {% comment %} Message Input {% endcomment %}
+            <div class="option-group" style="margin-bottom: 0;">
+              <label class="option-group__label" for="contact-message">תוכן ההודעה</label>
+              <textarea 
+                id="contact-message" 
+                name="contact[body]" 
+                placeholder="מה תרצו לשאול אותנו או במה נוכל לעזור?" 
+                required 
+                class="form-text"
+              >{{ form.body }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 12px;">
+              שלחו הודעה ✉️
+            </button>
+          </div>
+
+        {%- endif -%}
+      {%- endform -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge Text", "default": "שירות הלקוחות שלנו" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "יש לכם שאלה? אנחנו כאן" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "אנחנו זמינים לכל שאלה, בעיה או בירור לגבי הזמנה. מלאו את הטופס ונחזור אליכם בהקדם." }
+  ],
+  "presets": [ { "name": "Contact Form" } ]
+}
+{% endschema %}

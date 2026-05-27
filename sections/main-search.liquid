@@ -1,0 +1,15 @@
+<section class="section container">
+  <h1>חיפוש</h1>
+  <form action="{{ routes.search_url }}" method="get">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="חפש..." style="width:100%;padding:14px;border-radius:12px;background:rgba(245,245,240,0.04);color:var(--text);border:1px solid var(--border);font:inherit">
+  </form>
+  {%- if search.performed -%}
+    <p class="muted" style="margin-top:16px">{{ search.results_count }} תוצאות עבור "{{ search.terms | escape }}"</p>
+    <div class="testimonials" style="margin-top:24px">
+      {%- for item in search.results -%}
+        <a href="{{ item.url }}" class="card"><h3 style="font-size:16px">{{ item.title }}</h3></a>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}{ "name": "Search" }{% endschema %}

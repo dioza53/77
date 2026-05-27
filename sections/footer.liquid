@@ -1,0 +1,58 @@
+{% comment %}
+  LumiBrace Premium Footer Section — customizable branding, navigation blocks, and copyright
+{% endcomment %}
+
+<footer class="site-footer">
+  <div class="container" style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
+    
+    <div>
+      <div class="site-footer__brand">{{ shop.name | default: 'LUMIBRACE' }}</div>
+      <p class="muted" style="max-width: 450px; margin: 0 auto;">{{ section.settings.tagline }}</p>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div style="display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
+        {%- for block in section.blocks -%}
+          <a href="{{ block.settings.link_url }}" {{ block.shopify_attributes }}>{{ block.settings.link_title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div style="border-top: 1px solid var(--border); width: 100%; padding-top: 24px; display: flex; flex-direction: column; gap: 16px; align-items: center; font-size: 12px; color: var(--text-muted);">
+      <div style="display: flex; gap: 12px; font-size: 20px; opacity: 0.7;">
+        <span>💳</span><span>🛡️</span><span>🔒</span>
+      </div>
+      <p>© {{ 'now' | date: '%Y' }} {{ shop.name | default: 'LumiBrace' }}. כל הזכויות שמורות.</p>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "tagline", "label": "Footer Tagline", "default": "צמיד הקרנה יוקרתי המכיל את הרגעים היפים ביותר שלכם. איכות ללא פשרות, עיצוב נצחי ורגש שעובר בכל מבט." }
+  ],
+  "blocks": [
+    {
+      "type": "footer_link",
+      "name": "Quick Link",
+      "settings": [
+        { "type": "text", "id": "link_title", "label": "Link Title" },
+        { "type": "url", "id": "link_url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "footer_link", "settings": { "link_title": "תקנון האתר ותנאי שימוש", "link_url": "/" } },
+        { "type": "footer_link", "settings": { "link_title": "מדיניות משלוחים והחזרות", "link_url": "/" } },
+        { "type": "footer_link", "settings": { "link_title": "שירות לקוחות", "link_url": "#contact" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

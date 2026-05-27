@@ -1,0 +1,31 @@
+{
+  "general": {
+    "meta": {
+      "tags": "תגיות: {{ tags }}",
+      "page": "עמוד {{ page }}"
+    },
+    "404": {
+      "title": "העמוד לא נמצא",
+      "subtext": "חזרו לעמוד הבית",
+      "link": "לעמוד הבית"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "סל הקניות",
+      "empty": "הסל שלך ריק",
+      "checkout": "לתשלום",
+      "subtotal": "סך הכל",
+      "remove": "הסרה",
+      "quantity": "כמות",
+      "continue": "המשך קנייה"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "הוספה לסל",
+      "sold_out": "אזל מהמלאי",
+      "price": "מחיר"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "hero":                 { "type": "hero" },
+    "product_configurator": { "type": "product-configurator" },
+    "how_it_works":         { "type": "how-it-works" },
+    "gift_experience":      { "type": "gift-experience" },
+    "ugc_gallery":          { "type": "ugc-gallery" },
+    "our_story":            { "type": "our-story" },
+    "comparison_table":     { "type": "comparison-table" },
+    "testimonials":         { "type": "testimonials" },
+    "faq":                  { "type": "faq" },
+    "contact_form":         { "type": "contact-form" }
+  },
+  "order": [
+    "hero",
+    "product_configurator",
+    "how_it_works",
+    "gift_experience",
+    "ugc_gallery",
+    "our_story",
+    "comparison_table",
+    "testimonials",
+    "faq",
+    "contact_form"
+  ]
+}

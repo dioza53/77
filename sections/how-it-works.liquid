@@ -1,0 +1,84 @@
+{% comment %}
+  LumiBrace Premium How It Works Section — customizable steps with media (images/videos)
+{% endcomment %}
+
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span>{{ section.settings.badge }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="steps">
+      {%- for block in section.blocks -%}
+        <div class="card step-card" {{ block.shopify_attributes }}>
+          <div class="step-card__num">0{{ forloop.index }}</div>
+          
+          <div class="step-card__icon-box">
+            {%- if forloop.index == 1 -%}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+              </svg>
+            {%- elsif forloop.index == 2 -%}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h12l4 6-10 13L2 9z"/>
+              </svg>
+            {%- else -%}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+              </svg>
+            {%- endif -%}
+          </div>
+
+          <h3>{{ block.settings.title }}</h3>
+          <p class="muted">{{ block.settings.description }}</p>
+
+          {%- if block.settings.video_url != blank or block.settings.image != blank -%}
+            <div class="step-card__media">
+              {%- if block.settings.video_url != blank -%}
+                <video src="{{ block.settings.video_url }}" autoplay loop muted playsinline></video>
+              {%- elsif block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge Text", "default": "התהליך שלנו" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "איך הקסם קורה?" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "3 שלבים פשוטים בדרך לצמיד הכי אישי ומרגש שיהיה לכם אי פעם." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "העלו תמונה" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "בוחרים את הרגע הכי מרגש שלכם ומעלים אותו ישירות לאתר. המערכת תעזור לכם למרכז את התמונה." },
+        { "type": "image_picker", "id": "image", "label": "Step Image" },
+        { "type": "text", "id": "video_url", "label": "Step Video URL (Optional)" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        { "type": "step", "settings": { "title": "מעלים תמונה", "description": "בוחרים את הרגע הכי מרגש שלכם ומעלים אותו ישירות לאתר. המערכת תעזור לכם למרכז את התמונה." } },
+        { "type": "step", "settings": { "title": "אנחנו מייצרים", "description": "האמנים שלנו חורטים את התמונה בטכנולוגיית ננו-לייזר בתוך קריסטל HD איכותי, המשובץ בעבודת יד בצמיד." } },
+        { "type": "step", "settings": { "title": "אתם מקרינים", "description": "הצמידו את העין או השתמשו בפנס הטלפון כדי להקרין את הזיכרון שלכם בגדול. רגע קסום שמלווה אתכם." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

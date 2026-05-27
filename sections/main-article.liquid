@@ -1,0 +1,8 @@
+<section class="section container">
+  <article>
+    <h1>{{ article.title }}</h1>
+    <p class="muted">{{ article.published_at | date: '%d/%m/%Y' }} · {{ article.author }}</p>
+    <div>{{ article.content }}</div>
+  </article>
+</section>
+{% schema %}{ "name": "Article" }{% endschema %}

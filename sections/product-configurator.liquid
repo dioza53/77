@@ -1,0 +1,331 @@
+{% comment %}
+  LumiBrace Premium Product Configurator — RTL & Mobile optimized
+  Natively integrates image uploads (via Shopify properties) and a fallback for WhatsApp submissions.
+{% endcomment %}
+
+{%- assign product = product | default: all_products[section.settings.product] | default: collections.all.products.first -%}
+{%- assign first_variant = product.selected_or_first_available_variant -%}
+
+<section class="product container" data-product>
+  <div class="product__grid">
+    
+    {% comment %} Left side: Interactive Galleries & Circle Projection Previews {% endcomment %}
+    <div class="product__media-container">
+      <div class="gallery-toggle" role="tablist">
+        <button type="button" class="gallery-toggle__btn is-active" data-gallery-tab="product" role="tab" aria-selected="true">
+          הצמיד
+        </button>
+        <button type="button" class="gallery-toggle__btn" data-gallery-tab="projection" role="tab" aria-selected="false">
+          ההקרנה
+        </button>
+      </div>
+
+      <div class="product__media-wrapper">
+        {% comment %} Main product image gallery {% endcomment %}
+        <div class="product__gallery" data-gallery-content="product">
+          {%- if product.featured_image -%}
+            <img id="product-image" src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" loading="eager" fetchpriority="high">
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+
+        {% comment %} Simulated circle projection preview {% endcomment %}
+        <div class="product__projection hidden" data-gallery-content="projection">
+          <div class="projection-box">
+            <div class="projection-light-beam"></div>
+            <div class="projection-cone"></div>
+            <div class="projection-circle">
+              <div class="projection-no-image" data-projection-placeholder>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+                </svg>
+                <p>התמונה שלכם תוקרן כאן</p>
+              </div>
+              <img src="" class="projection-img hidden" data-projection-preview alt="תצוגת הקרנה">
+              <div class="projection-shimmer"></div>
+            </div>
+            <div class="projection-badge">תצוגה מקדימה של ההקרנה</div>
+          </div>
+        </div>
+      </div>
+      
+      {% comment %} Thumbnails {% endcomment %}
+      <div class="product__thumbnails" data-gallery-thumbnails>
+        {%- for image in product.images -%}
+          <button type="button" class="thumb-btn {% if forloop.first %}is-active{% endif %}" data-thumb-index="{{ forloop.index0 }}" data-image-url="{{ image | image_url: width: 1200 }}">
+            <img src="{{ image | image_url: width: 150 }}" alt="תצוגה מקדימה {{ forloop.index }}" loading="lazy">
+          </button>
+        {%- endfor -%}
+      </div>
+
+    {% comment %} Right side: Product configuration details and forms {% endcomment %}
+    <div class="product__info">
+      <h1 class="product__title">{{ product.title }}</h1>
+      
+      <div class="product__rating-summary">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text">4.9/5 (1,200+ ביקורות מאומתות)</span>
+      </div>
+
+      <div class="product__price-container">
+        <span class="product__price" data-price>{{ first_variant.price | money }}</span>
+        {%- if first_variant.compare_at_price > first_variant.price -%}
+          <del class="product__compare-price" data-compare-price>{{ first_variant.compare_at_price | money }}</del>
+          <span class="discount-badge" data-discount-badge>50% הנחה</span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.description != blank -%}
+        <div class="product__desc muted">{{ product.description }}</div>
+      {%- endif -%}
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data" class="configurator-form" data-product-form>
+        <input type="hidden" name="id" value="{{ first_variant.id }}" data-variant-id>
+        <input type="hidden" name="quantity" value="1">
+
+        {% comment %} Custom interactive Color & Bundle options {% endcomment %}
+        {%- for option in product.options_with_values -%}
+          <div class="option-group" data-option-group-position="{{ option.position }}">
+            <label class="option-group__label">{{ option.name }}</label>
+            <div class="option-pills">
+              {%- for value in option.values -%}
+                {%- assign input_id = 'opt-' | append: option.position | append: '-' | append: forloop.index -%}
+                <label class="option-pill {% if value == option.selected_value %}is-active{% endif %}" for="{{ input_id }}">
+                  <input
+                    type="radio"
+                    id="{{ input_id }}"
+                    name="options[{{ option.name | escape }}]"
+                    value="{{ value | escape }}"
+                    data-option-input
+                    data-option-position="{{ option.position }}"
+                    {% if value == option.selected_value %}checked{% endif %}
+                  >
+                  <span class="option-pill__title">
+                    {%- if option.name contains 'צבע' or option.name contains 'Color' -%}
+                      {%- if value contains 'כסף' or value contains 'Silver' -%}<span class="color-swatch color-swatch--silver"></span>{%- endif -%}
+                      {%- if value contains 'זהב' or value contains 'Gold' -%}<span class="color-swatch color-swatch--gold"></span>{%- endif -%}
+                      {%- if value contains 'מעורב' or value contains 'Mixed' -%}<span class="color-swatch color-swatch--mixed"></span>{%- endif -%}
+                    {%- endif -%}
+                    {{ value }}
+                  </span>
+                </label>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+
+        {% comment %} Multi-Bracelet color customizer for "זוג" {% endcomment %}
+        <div class="option-group hidden" data-pair-colors-selector>
+          <label class="option-group__label">התאמת צבעי הזוג</label>
+          <div class="pair-color-grids">
+            <div class="pair-color-select">
+              <span class="pair-color-title">צבע צמיד 1:</span>
+              <div class="option-pills option-pills--small">
+                <label class="option-pill is-active" for="pair-c1-gold">
+                  <input type="radio" id="pair-c1-gold" name="pair-color-1" value="זהב" checked data-pair-color-input="1">
+                  <span class="option-pill__title"><span class="color-swatch color-swatch--gold"></span>זהב</span>
+                </label>
+                <label class="option-pill" for="pair-c1-silver">
+                  <input type="radio" id="pair-c1-silver" name="pair-color-1" value="כסף" data-pair-color-input="1">
+                  <span class="option-pill__title"><span class="color-swatch color-swatch--silver"></span>כסף</span>
+                </label>
+              </div>
+            </div>
+            <div class="pair-color-select" style="margin-top: 12px;">
+              <span class="pair-color-title">צבע צמיד 2:</span>
+              <div class="option-pills option-pills--small">
+                <label class="option-pill is-active" for="pair-c2-gold">
+                  <input type="radio" id="pair-c2-gold" name="pair-color-2" value="זהב" checked data-pair-color-input="2">
+                  <span class="option-pill__title"><span class="color-swatch color-swatch--gold"></span>זהב</span>
+                </label>
+                <label class="option-pill" for="pair-c2-silver">
+                  <input type="radio" id="pair-c2-silver" name="pair-color-2" value="כסף" data-pair-color-input="2">
+                  <span class="option-pill__title"><span class="color-swatch color-swatch--silver"></span>כסף</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Upload method selector {% endcomment %}
+        <div class="option-group">
+          <label class="option-group__label">איך תרצו לשלוח את התמונה?</label>
+          <div class="option-pills">
+            <label class="option-pill is-active" for="method-upload">
+              <input type="radio" id="method-upload" name="properties[אופן שליחת התמונה]" value="העלאה ישירה באתר" checked data-method-input="upload">
+              <span class="option-pill__title">העלאה ישירה באתר 📸</span>
+              <span class="option-pill__sub">מומלץ ומהיר</span>
+            </label>
+            <label class="option-pill" for="method-whatsapp">
+              <input type="radio" id="method-whatsapp" name="properties[אופן שליחת התמונה]" value="שליחה בוואטסאפ לאחר הרכישה" data-method-input="whatsapp">
+              <span class="option-pill__title">שליחה בוואטסאפ / מייל 💬</span>
+              <span class="option-pill__sub">נחזור אליכם לאחר ההזמנה</span>
+            </label>
+          </div>
+        </div>
+
+        {% comment %} Image Upload zone 1 {% endcomment %}
+        <div class="option-group" data-upload-group="1">
+          <label class="option-group__label" data-upload-title-1>תמונה לצמיד שלכם</label>
+          <label class="upload-zone" data-upload-zone="1">
+            <svg class="upload-zone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span data-upload-label="1">לחצו או גררו תמונה לכאן</span>
+            <small class="muted">תמונה חדה וברורה · מקסימום 15MB</small>
+            <input type="file" accept="image/*" name="properties[תמונה לצמיד 1]" data-upload-input="1">
+            <div class="upload-zone__preview-container hidden" data-preview-container="1">
+              <img class="upload-zone__preview" data-upload-preview="1" alt="תצוגה מקדימה">
+              <button type="button" class="upload-zone__remove" data-upload-remove="1" aria-label="הסרת תמונה">×</button>
+            </div>
+          </label>
+        </div>
+
+        {% comment %} Image Upload zone 2 (Pair Only) {% endcomment %}
+        <div class="option-group hidden" data-pair-only data-upload-group="2">
+          <label class="option-group__label">תמונה לצמיד השני (אופציונלי — אחרת ישוכפל מצמיד 1)</label>
+          <label class="upload-zone" data-upload-zone="2">
+            <svg class="upload-zone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span data-upload-label="2">לחצו להעלאת תמונה לצמיד השני</span>
+            <small class="muted">אופציונלי</small>
+            <input type="file" accept="image/*" name="properties[תמונה לצמיד 2]" data-upload-input="2">
+            <div class="upload-zone__preview-container hidden" data-preview-container="2">
+              <img class="upload-zone__preview" data-upload-preview="2" alt="תצוגה מקדימה">
+              <button type="button" class="upload-zone__remove" data-upload-remove="2" aria-label="הסרת תמונה">×</button>
+            </div>
+          </label>
+        </div>
+
+        {% comment %} WhatsApp / Mail info section {% endcomment %}
+        <div class="option-group info-banner hidden" data-whatsapp-info-banner>
+          <div class="info-banner__icon">💡</div>
+          <div class="info-banner__text">
+            <strong>רעיון מצוין!</strong> השלימו את ההזמנה כעת, ומיד לאחריה ניצור איתכם קשר אישי בוואטסאפ או במייל כדי לקבל מכם את התמונה (או שתי תמונות נפרדות) ולדאוג שהן יצאו מושלמות בייצור.
+          </div>
+        </div>
+
+        {% comment %} Optional Gift Note / Engraving {% endcomment %}
+        <div class="option-group">
+          <label class="option-group__label" for="engraving">הקדשה אישית או חריטה (אופציונלי)</label>
+          <textarea id="engraving" class="form-text" name="properties[הקדשה]" maxlength="120" placeholder="לדוגמה: אוהב אותך לנצח, 24.12.2023..."></textarea>
+        </div>
+
+        {% comment %} Purchase Buttons {% endcomment %}
+        <button type="submit" class="btn btn-primary btn-block btn-buy" data-add-to-cart>
+          <span>הוספה לסל</span>
+        </button>
+
+        <div data-form-error class="form-error-msg hidden"></div>
+      </form>
+
+      {% comment %} trust points badges {% endcomment %}
+      <div class="trust">
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>אחריות לכל החיים</span>
+        </div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+          <span>משלוח מבוטח חינם</span>
+        </div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>14 ימי החזרה</span>
+        </div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>רכישה מאובטחת</span>
+        </div>
+      </div>
+
+      {% comment %} Sizing Guide & Sizing Tips Accordions {% endcomment %}
+      <div class="details-accordions">
+        <details class="details-acc">
+          <summary class="details-acc__summary">
+            <span class="details-acc__title">📏 מדריך מידות - מתאים ב-100%</span>
+            <span class="details-acc__icon">+</span>
+          </summary>
+          <div class="details-acc__content font-light">
+            <p><strong>מידה אחת שמתאימה לכולם (One Size Fits All):</strong> צמידי LumiBrace מעוצבים בשיטה מתכווננת יוקרתית המיוצרת ברוחב קלאסי של 0.8 ס"מ המתאים לגברים ולנשים כאחד.</p>
+            <p style="margin-top:8px"><strong>אורך הצמיד:</strong> אורך בסיס של 16 ס"מ ועוד 5 ס"מ של שרשרת הארכה חזקה. ניתן לסגור ולכוון את הצמיד בכל נקודה בין 16 ס"מ ל-21 ס"מ.</p>
+            <p style="margin-top:8px"><strong>מעולה כמתנה:</strong> מאחר והצמיד מכסה לחלוטין את כל טווחי המידות הסטנדרטיים, אין צורך לנחש או למדוד את פרק כף היד של מקבל המתנה מראש!</p>
+          </div>
+        </details>
+
+        <details class="details-acc">
+          <summary class="details-acc__summary">
+            <span class="details-acc__title">💡 טיפים לבחירת תמונה מנצחת</span>
+            <span class="details-acc__icon">+</span>
+          </summary>
+          <div class="details-acc__content font-light">
+            <p>כדי שההקרנה בתוך הצמיד תצא הכי חדה ומרגשת שיש, מומלץ לעקוב אחר הטיפים הבאים:</p>
+            <ul style="margin-top:8px; padding-inline-start: 16px; list-style-type: disc;">
+              <li><strong>חדות ואיכות:</strong> בחרו תמונה מקורית וחדה ככל האפשר. הימנעו מצילומי מסך (Screenshots) מטושטשים.</li>
+              <li><strong>תאורה חזקה:</strong> תמונות שצולמו באור יום, תחת שמש או תאורה טובה יראו מעולה. תמונות חשוכות יקשו על ראיית הפרטים.</li>
+              <li><strong>מרכז הפוקוס:</strong> ודאו שהפנים של האנשים או בעל החיים נמצאים יחסית במרכז התמונה.</li>
+              <li><strong>רקע פשוט:</strong> רקע נקי או מטושטש מעט יגרום לנושא המרכזי לבלוט בצורה מושלמת בתוך העדשה.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% comment %} Upsell Modal (Mirrors React "Don't let memory stay alone") {% endcomment %}
+<div class="upsell-modal hidden" data-upsell-modal>
+  <div class="upsell-modal__backdrop" data-upsell-decline></div>
+  <div class="upsell-modal__body">
+    <div class="upsell-modal__header-line"></div>
+    <div class="upsell-modal__sparkle-icon">✨</div>
+    <h3 class="upsell-modal__title">הצעה בלעדית: <br><span>אל תתנו לזיכרון להישאר לבד</span></h3>
+    <p class="upsell-modal__text">גילינו שרוב הלקוחות שלנו מעדיפים לשמור צמיד אחד לעצמם ולהעניק את הצמיד השני במתנה לאדם הכי יקר להם.</p>
+    
+    <div class="upsell-modal__deal">
+      <div class="upsell-modal__deal-info">
+        <span class="upsell-modal__deal-tag">שדרוג מומלץ לזוג צמידים</span>
+        <span class="upsell-modal__deal-price">₪389 בלבד <del>₪778</del></span>
+      </div>
+      <span class="upsell-modal__deal-badge">חיסכון של ₪389!</span>
+    </div>
+
+    <div class="upsell-modal__ctas">
+      <button type="button" class="btn btn-primary btn-block" data-upsell-accept>
+        כן, שדרגו אותי לזוג מרגש ב-₪389!
+      </button>
+      <button type="button" class="upsell-modal__decline-btn" data-upsell-decline>
+        לא תודה, אני מעדיף להמשיך עם צמיד בודד
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.__product = {{ product | json }};
+</script>
+
+{% schema %}
+{
+  "name": "Product configurator",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product to customize" }
+  ],
+  "presets": [
+    {
+      "name": "Product configurator"
+    }
+  ]
+}
+{% endschema %}

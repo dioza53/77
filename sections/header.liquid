@@ -1,0 +1,43 @@
+{% comment %} Header section — pinned, with cart count and mobile menu {% endcomment %}
+<div class="announcement">{{ section.settings.announcement_text }}</div>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__logo gold-grad">{{ shop.name | default: 'LUMIBRACE' }}</a>
+    <nav class="site-header__nav" aria-label="ראשי">
+      {%- for link in section.blocks -%}
+        <a href="{{ link.settings.url }}">{{ link.settings.label }}</a>
+      {%- endfor -%}
+    </nav>
+    <a href="/cart" class="site-header__cart" aria-label="סל קניות">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="site-header__cart-count" data-cart-count {% if cart.item_count == 0 %}style="display:none"{% endif %}>{{ cart.item_count }}</span>
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "announcement_text", "label": "Announcement", "default": "מבצע: 50% הנחה לזמן מוגבל · משלוח לכל הארץ 🚚" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "הסיפור שלנו" },
+        { "type": "url", "id": "url", "label": "URL", "default": "/" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link", "settings": { "label": "הסיפור שלנו", "url": "/pages/about" } },
+      { "type": "link", "settings": { "label": "מעקב משלוח", "url": "/pages/track-order" } }
+    ]
+  }
+}
+{% endschema %}

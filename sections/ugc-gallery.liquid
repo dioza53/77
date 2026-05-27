@@ -1,0 +1,70 @@
+{% comment %}
+  LumiBrace UGC Gallery Section — customizable customer photos and review overlays
+{% endcomment %}
+
+<section class="section" style="background-color: var(--bg-2);">
+  <div class="container">
+    <div class="section-head">
+      <span>{{ section.settings.badge }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="ugc-grid">
+      {%- for block in section.blocks -%}
+        <div class="ugc-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="תמונת לקוח {{ block.settings.name }}" loading="lazy">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+          <div class="ugc-item__overlay">
+            <div class="ugc-item__stars">
+              {%- for i in (1..block.settings.rating) -%}★{%- endfor -%}
+            </div>
+            <div class="ugc-item__author">{{ block.settings.name }}</div>
+            <div class="ugc-item__text">"{{ block.settings.review_text }}"</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "UGC Gallery",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge Text", "default": "קהילה של זיכרונות" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "רגעים אמיתיים של לקוחות" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "הצטרפו לאלפי לקוחות שכבר שומרים את הזיכרונות שלהם קרוב ללב." }
+  ],
+  "blocks": [
+    {
+      "type": "ugc_item",
+      "name": "Customer Review",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Customer Photo" },
+        { "type": "text", "id": "name", "label": "Customer Name", "default": "נועה & איתי" },
+        { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "default": 5 },
+        { "type": "textarea", "id": "review_text", "label": "Review Text", "default": "השקיעה על האגם בקומו - הרגע שבו ידעתי שזה הוא. עכשיו הוא איתי תמיד על היד." }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "UGC Gallery",
+      "blocks": [
+        { "type": "ugc_item", "settings": { "name": "נועה & איתי", "review_text": "השקיעה על האגם בקומו - הרגע שבו ידעתי שזה הוא. עכשיו הוא איתי תמיד." } },
+        { "type": "ugc_item", "settings": { "name": "שירה & דניאל", "review_text": "ירח דבש במלדיביים, אחרי שנתיים שחיכינו לזה. הרגע הזה שווה הכל." } },
+        { "type": "ugc_item", "settings": { "name": "תמר & יונתן", "review_text": "החיבוק הראשון שלנו מול הים בנעורים. הזיכרון הזה נמצא איתי בכל יום." } },
+        { "type": "ugc_item", "settings": { "name": "ליאל & עומר", "review_text": "סלפי ספונטני בדרך הביתה, צוחקים על שטות. הכי טוב כשזה הכי פשוט." } },
+        { "type": "ugc_item", "settings": { "name": "מאיה & יואב", "review_text": "ערב ראש השנה בריו, זיקוקים מעלינו ונשיקה אחת ארוכה. בלתי נשכח." } },
+        { "type": "ugc_item", "settings": { "name": "רוני & אדם", "review_text": "לילה בחוף, רק אנחנו והירח. הצמיד הזה הוא הסוד הקטן שלנו." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,76 @@
+{% comment %}
+  LumiBrace Comparison Table Section — high-converting feature comparison list
+{% endcomment %}
+
+<section class="section" style="background-color: var(--bg);">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="comparison-container" style="max-width: 900px; margin: 0 auto; overflow-x: auto; border: 1px solid var(--border); border-radius: 28px; background: var(--bg-card); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+      <table style="width: 100%; border-collapse: collapse; min-width: 600px; text-align: right; direction: rtl;">
+        <thead>
+          <tr style="background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border);">
+            <th style="padding: 24px; font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">קריטריון השוואה</th>
+            <th style="padding: 24px; font-weight: 900; text-align: center; color: var(--gold); background: var(--gold-soft); width: 35%;">LumiBrace</th>
+            <th style="padding: 24px; font-weight: 700; text-align: center; color: var(--text-muted); width: 30%;">מתחרים זולים</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr style="border-bottom: 1px solid var(--border); transition: var(--transition);" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.02)'" onmouseout="this.style.backgroundColor='transparent'">
+              <td style="padding: 20px 24px; font-weight: 700; font-size: 14px;">{{ block.settings.feature }}</td>
+              <td style="padding: 20px 24px; text-align: center; background: rgba(212, 175, 55, 0.03); border-left: 1px solid rgba(212, 175, 55, 0.05); border-right: 1px solid rgba(212, 175, 55, 0.05);">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <span style="color: var(--gold); font-size: 20px;">✔️</span>
+                  <span style="font-weight: 700; font-size: 13px;">{{ block.settings.lumi_desc }}</span>
+                </div>
+              </td>
+              <td style="padding: 20px 24px; text-align: center; opacity: 0.45;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                  <span style="font-size: 18px;">❌</span>
+                  <span style="font-size: 13px;">{{ block.settings.other_desc }}</span>
+                </div>
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "למה לבחור ב-LumiBrace?" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "אל תתפשרו על האיכות כשמדובר בזיכרונות שלכם. הנה ההבדל בינינו לבין חיקויים זולים." }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison Feature",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature Name" },
+        { "type": "text", "id": "lumi_desc", "label": "LumiBrace Feature Description" },
+        { "type": "text", "id": "other_desc", "label": "Competitor Feature Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        { "type": "comparison_row", "settings": { "feature": "חומר הגלם", "lumi_desc": "פלדת אל-חלד 316L (אינה מחלידה)", "other_desc": "סגסוגת מתכת פשוטה (משחירה מהר)" } },
+        { "type": "comparison_row", "settings": { "feature": "איכות העדשה", "lumi_desc": "קריסטל HD אופטי מלוטש", "other_desc": "עדשת פלסטיק מטושטשת" } },
+        { "type": "comparison_row", "settings": { "feature": "עמידות במים", "lumi_desc": "עמידות מלאה בים, מקלחת וספורט", "other_desc": "אסור להרטיב - מחליד במגע עם מים" } },
+        { "type": "comparison_row", "settings": { "feature": "חדות התמונה", "lumi_desc": "חריטת ננו-לייזר מגה חדה", "other_desc": "הדפסה כהה, מפוקסלת ולא ברורה" } },
+        { "type": "comparison_row", "settings": { "feature": "מארז מתנה", "lumi_desc": "קופסת פרימיום יוקרתית וכרטיס ברכה", "other_desc": "שקית ניילון פשוטה וזולה" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

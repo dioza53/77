@@ -1,0 +1,1 @@
+<section class="section container"><h1>חשבון שלי</h1><a href="/account/logout">התנתק</a><h2>הזמנות</h2>{% for order in customer.orders %}<p><a href="{{ order.customer_url }}">{{ order.name }} — {{ order.created_at | date: '%d/%m/%Y' }} — {{ order.total_price | money }}</a></p>{% endfor %}</section>

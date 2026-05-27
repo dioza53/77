@@ -1,0 +1,39 @@
+{% comment %}
+  LumiBrace Premium Hero Section — customizable video/image background and metallic gradients
+{% endcomment %}
+
+<section class="hero">
+  {%- if section.settings.video_url != blank -%}
+    <video autoplay loop muted playsinline class="hero__video-bg">
+      <source src="{{ section.settings.video_url }}" type="video/mp4">
+    </video>
+  {%- elsif section.settings.image != blank -%}
+    <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.heading }}" class="hero__video-bg" style="object-fit: cover;">
+  {%- endif -%}
+
+  <div class="hero__overlay"></div>
+
+  <div class="container text-center">
+    <h1 class="gold-grad">{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.subheading }}</p>
+    <div class="hero__cta">
+      <a href="{{ section.settings.cta_url }}" class="btn btn-primary">{{ section.settings.cta_label }}</a>
+      <a href="#how-it-works" class="btn btn-ghost">איך זה עובד?</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "הזיכרון שלך,\nתמיד איתך." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "צמיד הקרנה יוקרתי המכיל את הרגעים היפים ביותר שלכם. איכות ללא פשרות, עיצוב נצחי ורגש שעובר בכל מבט." },
+    { "type": "text", "id": "cta_label", "label": "CTA Label", "default": "הזמינו עכשיו" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL", "default": "/products/lumibrace" },
+    { "type": "text", "id": "video_url", "label": "Background Video URL", "default": "https://assets.mixkit.co/videos/preview/mixkit-light-particles-floating-in-a-dark-background-10-large.mp4" },
+    { "type": "image_picker", "id": "image", "label": "Fallback Image Background" }
+  ],
+  "presets": [ { "name": "Hero" } ]
+}
+{% endschema %}

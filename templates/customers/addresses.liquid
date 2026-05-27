@@ -1,0 +1,1 @@
+<section class="section container"><h1>הכתובות שלי</h1>{% paginate customer.addresses by 10 %}{% for address in customer.addresses %}<div class="card" style="margin-bottom:12px">{{ address | format_address }}</div>{% endfor %}{% endpaginate %}</section>

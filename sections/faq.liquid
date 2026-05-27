@@ -1,0 +1,43 @@
+<section class="section container">
+  <div class="section-head">
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+  <div style="max-width:760px;margin:0 auto">
+    {%- for block in section.blocks -%}
+      <details class="faq__item">
+        <summary class="faq__q">{{ block.settings.question }}</summary>
+        <div class="faq__a">{{ block.settings.answer }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "שאלות נפוצות" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "כמה זמן לוקח המשלוח?", "answer": "המשלוח מגיע תוך 3-5 ימי עסקים לכל חלקי הארץ. משלוח חינם בהזמנה של זוג צמידים." } },
+        { "type": "faq", "settings": { "question": "איך התמונה נכנסת לצמיד?", "answer": "אנחנו משתמשים בטכנולוגיית הקרנה מתקדמת שמאפשרת לראות את התמונה דרך הקריסטל הקטן בצמיד." } },
+        { "type": "faq", "settings": { "question": "האם אפשר להחזיר?", "answer": "כן, יש לך 14 יום להחזרה מלאה." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

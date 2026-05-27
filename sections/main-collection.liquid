@@ -1,0 +1,18 @@
+<section class="section container">
+  <h1>{{ collection.title }}</h1>
+  {%- if collection.description != blank -%}<p class="muted">{{ collection.description }}</p>{%- endif -%}
+  <div class="testimonials" style="margin-top:24px">
+    {%- for product in collection.products -%}
+      <a href="{{ product.url }}" class="card">
+        {%- if product.featured_image -%}
+          <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" style="border-radius:12px;aspect-ratio:1;object-fit:cover">
+        {%- endif -%}
+        <h3 style="font-size:18px;margin-top:12px">{{ product.title }}</h3>
+        <div class="gold" style="font-weight:700">{{ product.price | money }}</div>
+      </a>
+    {%- else -%}
+      <p class="muted">אין מוצרים באוסף הזה.</p>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}{ "name": "Collection" }{% endschema %}

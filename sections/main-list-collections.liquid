@@ -1,0 +1,12 @@
+<section class="section container">
+  <h1>אוספים</h1>
+  <div class="testimonials">
+    {%- for collection in collections -%}
+      <a href="{{ collection.url }}" class="card">
+        <h3 style="font-size:18px">{{ collection.title }}</h3>
+        <span class="muted">{{ collection.products_count }} מוצרים</span>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}{ "name": "Collections list" }{% endschema %}

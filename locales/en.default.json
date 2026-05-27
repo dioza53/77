@@ -1,0 +1,13 @@
+{
+  "general": {
+    "meta": { "tags": "Tags: {{ tags }}", "page": "Page {{ page }}" },
+    "404": { "title": "Page not found", "subtext": "Back to home", "link": "Home" }
+  },
+  "cart": {
+    "general": {
+      "title": "Cart", "empty": "Your cart is empty", "checkout": "Checkout",
+      "subtotal": "Subtotal", "remove": "Remove", "quantity": "Quantity", "continue": "Continue shopping"
+    }
+  },
+  "products": { "product": { "add_to_cart": "Add to cart", "sold_out": "Sold out", "price": "Price" } }
+}

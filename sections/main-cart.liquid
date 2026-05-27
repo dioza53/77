@@ -1,0 +1,115 @@
+{% comment %}
+  LumiBrace Premium Native Cart Section — RTL & Hebrew optimized
+  Includes live links for native image CDN properties, engraving preview, and instant quantities adjustment.
+{% endcomment %}
+
+<section class="cart-page container">
+  <h1 class="gold-grad" style="margin-bottom: 32px; font-size: clamp(24px, 4vw, 36px); font-weight: 900;">סל הקניות שלכם</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <div style="text-align: center; padding: 48px 0;">
+      <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;">🛒</div>
+      <p class="muted" style="margin-bottom: 24px;">סל הקניות שלכם ריק כרגע.</p>
+      <a href="/" class="btn btn-primary">חזרה לעיצוב הצמיד</a>
+    </div>
+  {%- else -%}
+    <form action="/cart" method="post" id="cart-form">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        {%- for item in cart.items -%}
+          <div class="cart-item" data-cart-line="{{ forloop.index }}">
+            <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" loading="lazy">
+            <div style="text-align: right;">
+              <div class="cart-item__title">{{ item.product.title }}</div>
+              <div class="cart-item__props muted" style="margin-bottom: 8px;">{{ item.variant.title }}</div>
+              
+              {% comment %} Render Properties beautifully {% endcomment %}
+              {%- for prop in item.properties -%}
+                {%- assign prop_first_char = prop.first | slice: 0 -%}
+                {%- if prop.last != blank and prop_first_char != '_' -%}
+                  <div class="cart-item__props">
+                    <strong>{{ prop.first }}:</strong> 
+                    {%- if prop.first contains 'תמונה' -%}
+                      {%- if prop.last contains 'http' -%}
+                        <a href="{{ prop.last }}" target="_blank" class="gold" style="text-decoration: underline;">צפייה בתמונה 📸</a>
+                      {%- else -%}
+                        <span class="gold">{{ prop.last }}</span>
+                      {%- endif -%}
+                    {%- else -%}
+                      <span>{{ prop.last }}</span>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+
+              <div class="cart-item__qty" style="margin-top: 12px;">
+                <button type="button" data-qty-down aria-label="הפחת כמות">−</button>
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-qty-input aria-label="כמות">
+                <button type="button" data-qty-up aria-label="הוסף כמות">+</button>
+              </div>
+            </div>
+            
+            <div style="text-align: left; display: flex; flex-direction: column; justify-content: space-between; height: 90px; align-items: flex-end;">
+              <div style="font-weight: 900; font-size: 18px; color: var(--gold);">{{ item.final_line_price | money }}</div>
+              <button type="button" class="muted" style="font-size: 12px; font-weight: 700; text-decoration: underline; background: transparent; border: none; cursor: pointer;" data-remove>הסרה</button>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="cart-totals" style="margin-top: 32px;">
+        <div class="cart-totals__row" style="border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+          <span>סך הכל לתשלום:</span>
+          <span class="gold">{{ cart.total_price | money }}</span>
+        </div>
+        <p class="muted" style="font-size: 13px; margin-top: 12px; margin-bottom: 24px;">משלוח מבוטח חינם לכל חלקי הארץ 🚚</p>
+        <button type="submit" name="checkout" class="btn btn-primary btn-block" style="font-size: 18px; font-weight: 900;">
+          המשך לתשלום מאובטח 🔒
+        </button>
+      </div>
+    </form>
+  {%- endif -%}
+</section>
+
+<script>
+(function () {
+  'use strict';
+  const form = document.getElementById('cart-form');
+  if (!form) return;
+
+  form.querySelectorAll('.cart-item').forEach((row) => {
+    const line = parseInt(row.dataset.cartLine, 10);
+    const input = row.querySelector('[data-qty-input]');
+    
+    row.querySelector('[data-qty-down]').addEventListener('click', () => {
+      input.value = Math.max(0, parseInt(input.value, 10) - 1);
+      change(line, parseInt(input.value, 10));
+    });
+    
+    row.querySelector('[data-qty-up]').addEventListener('click', () => {
+      input.value = parseInt(input.value, 10) + 1;
+      change(line, parseInt(input.value, 10));
+    });
+    
+    row.querySelector('[data-remove]').addEventListener('click', () => {
+      change(line, 0);
+    });
+  });
+
+  async function change(line, quantity) {
+    try {
+      await window.LumiCart.change(line, quantity);
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+      alert('אירעה שגיאה בעדכון סל הקניות.');
+    }
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

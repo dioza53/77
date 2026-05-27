@@ -1,0 +1,105 @@
+{% comment %}
+  LumiBrace Our Story Section — premium brand description & craftsmanship icons
+{% endcomment %}
+
+<section id="our-story" class="section" style="background-color: var(--bg-card);">
+  <div class="container">
+    
+    {% comment %} Part 1: Main Story {% endcomment %}
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 64px;">
+      <span class="gold" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em; font-weight: 900; display: block; margin-bottom: 12px;">
+        📖 {{ section.settings.badge }}
+      </span>
+      <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 900; line-height: 1.25;">
+        {{ section.settings.heading | newline_to_br }}
+      </h2>
+      <p class="muted" style="font-size: 17px; margin-top: 16px; line-height: 1.7;">
+        {{ section.settings.description }}
+      </p>
+    </div>
+
+    <div class="product__grid" style="align-items: center; margin-bottom: 64px;">
+      {% comment %} Left column: Story inspiration {% endcomment %}
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <h3 style="font-size: 26px; font-weight: 900;">{{ section.settings.col1_heading }}</h3>
+        <div class="muted" style="line-height: 1.7; display: flex; flex-direction: column; gap: 16px;">
+          <p>{{ section.settings.col1_text1 }}</p>
+          <p>{{ section.settings.col1_text2 }}</p>
+        </div>
+
+        <div class="option-pills" style="grid-template-columns: repeat(2, 1fr); margin-top: 16px; pointer-events: none;">
+          <div class="option-pill" style="align-items: flex-start; text-align: right; padding: 24px; min-height: auto;">
+            <span class="gold" style="font-size: 24px; margin-bottom: 8px;">❤️</span>
+            <span class="option-pill__title" style="font-size: 16px;">מיוצר באהבה</span>
+            <span class="option-pill__sub" style="font-size: 12px; margin-top: 4px;">כל הזמנה מטופלת באופן אישי ומבוקרת ידנית.</span>
+          </div>
+          <div class="option-pill" style="align-items: flex-start; text-align: right; padding: 24px; min-height: auto;">
+            <span class="gold" style="font-size: 24px; margin-bottom: 8px;">✨</span>
+            <span class="option-pill__title" style="font-size: 16px;">חזון המותג</span>
+            <span class="option-pill__sub" style="font-size: 12px; margin-top: 4px;">לחבר בין אנשים דרך רגעים של אור וזיכרון.</span>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} Right column: Premium Craftsmanship {% endcomment %}
+      <div class="card" style="background-color: rgba(0,0,0,0.35); border-color: var(--gold-border); padding: 48px; border-radius: 40px; position: relative; overflow: hidden;">
+        <div class="projection-light-beam" style="opacity: 0.5;"></div>
+        
+        <div style="position: relative; z-index: 2; display: flex; flex-direction: column; gap: 32px;">
+          <h3 style="font-size: 28px; font-weight: 900; line-height: 1.3;">
+            אמנות הדיוק <br><span class="gold">והאיכות ללא פשרות</span>
+          </h3>
+          <p class="muted" style="font-size: 15px; line-height: 1.6;">
+            אנחנו לא מתפשרים על פחות מהטוב ביותר. הצמידים שלנו עשויים מפלדת אל-חלד 316L בדרגה רפואית, המבטיחה עמידות מלאה במים, היפואלרגניות וברק שאינו דוהה.
+          </p>
+
+          <ul style="display: flex; flex-direction: column; gap: 24px; list-style-type: none;">
+            <li style="display: flex; gap: 16px;">
+              <div class="step-card__icon-box" style="width: 48px; height: 48px; border-radius: 12px; margin-bottom: 0; shrink-0;">
+                💎
+              </div>
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 2px;">קריסטל HD אופטי</h4>
+                <p class="muted" style="font-size: 13px;">עדשה מלוטשת המעניקה חדות מקסימלית להקרנה.</p>
+              </div>
+            </li>
+            <li style="display: flex; gap: 16px;">
+              <div class="step-card__icon-box" style="width: 48px; height: 48px; border-radius: 12px; margin-bottom: 0; shrink-0;">
+                🛡️
+              </div>
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 2px;">עמידות מלאה במים</h4>
+                <p class="muted" style="font-size: 13px;">אינו משחיר לעולם - עמיד במקלחות, ים וספורט.</p>
+              </div>
+            </li>
+            <li style="display: flex; gap: 16px;">
+              <div class="step-card__icon-box" style="width: 48px; height: 48px; border-radius: 12px; margin-bottom: 0; shrink-0;">
+                👥
+              </div>
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 2px;">קהילה של אלפים</h4>
+                <p class="muted" style="font-size: 13px;">מעל 10,000 לקוחות מרוצים ששומרים את הזיכרון קרוב אליהם.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge Text", "default": "הסיפור שלנו" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "יותר מתכשיט,\nזה הלב שלכם." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "LumiBrace נולדה מתוך רצון פשוט: להפוך את הזיכרונות הכי יקרים שלנו למשהו שאפשר לענוד, להרגיש ולראות בכל רגע." },
+    { "type": "text", "id": "col1_heading", "label": "Inspiration Heading", "default": "ההשראה שמאחורי LumiBrace" },
+    { "type": "textarea", "id": "col1_text1", "label": "Inspiration Paragraph 1", "default": "הכל התחיל כשחיפשנו דרך להנציח רגע מיוחד. רצינו משהו שהוא לא רק תמונה בטלפון או בתוך מסגרת על הקיר. רצינו משהו אישי, אינטימי, כזה שנמצא תמיד איתנו." },
+    { "type": "textarea", "id": "col1_text2", "label": "Inspiration Paragraph 2", "default": "השילוב בין עולם הצורפות המסורתי לבין טכנולוגיית ננו-אופטיקה מתקדמת אפשר לנו ליצור את הבלתי יאומן: קריסטל זעיר שמכיל בתוכו עולם שלם של רגש." }
+  ],
+  "presets": [ { "name": "Our Story" } ]
+}
+{% endschema %}

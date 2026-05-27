@@ -325,6 +325,7 @@
 <script>
   window.__product = {{ product | json | default: 'null' }};
 </script>
+<script src="{{ 'configurator.js' | asset_url }}" defer></script>
 
 {% schema %}
 {

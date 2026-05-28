@@ -39,7 +39,7 @@
       </h1>
       <p class="text-base md:text-xl text-pearl/80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">{{ section.settings.subheading }}</p>
       <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-        <a href="{{ section.settings.cta_url | default: '#product-configurator' }}" class="w-full md:w-auto px-12 py-5 bg-gold text-charcoal font-black rounded-full text-xl hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] active:scale-95 transition-all outline-none block text-center">
+        <a href="#design" onclick="document.getElementById('design')?.scrollIntoView({behavior: 'smooth'}); return false;" class="w-full md:w-auto px-12 py-5 bg-gold text-charcoal font-black rounded-full text-xl hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] active:scale-95 transition-all outline-none block text-center">
           {{ section.settings.cta_label }}
         </a>
       </div>

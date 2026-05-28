@@ -228,10 +228,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-header__logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Heebo', system-ui, sans-serif;
   font-size: 24px;
   font-weight: 900;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.03em;
 }
 
 .site-header__nav {
@@ -1282,11 +1282,12 @@ textarea.form-text:focus {
 }
 
 .site-footer__brand {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Heebo', system-ui, sans-serif;
   font-size: 26px;
   color: var(--gold);
   margin-bottom: 12px;
   font-weight: 900;
+  letter-spacing: -0.03em;
 }
 
 /* Interactive Conversion-boosting Upsell Modal */

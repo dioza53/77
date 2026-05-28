@@ -2,26 +2,249 @@
   LumiBrace Premium Hero Section — customizable video/image background and metallic gradients
 {% endcomment %}
 
-<section class="hero">
-  {%- if section.settings.video_url != blank -%}
-    <video autoplay loop muted playsinline class="hero__video-bg">
-      <source src="{{ section.settings.video_url }}" type="video/mp4">
-    </video>
-  {%- elsif section.settings.image != blank -%}
-    <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.heading }}" class="hero__video-bg" style="object-fit: cover;">
-  {%- endif -%}
+<section class="custom-hero">
+  <!-- Glow effects and floating particles background -->
+  <div class="custom-hero-bg">
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+    <div class="hologram-beam"></div>
+    
+    <div class="hero-particles">
+      <div class="particle p-1"></div>
+      <div class="particle p-2"></div>
+      <div class="particle p-3"></div>
+      <div class="particle p-4"></div>
+      <div class="particle p-5"></div>
+      <div class="particle p-6"></div>
+    </div>
 
-  <div class="hero__overlay"></div>
-
-  <div class="container text-center">
-    <h1 class="gold-grad">{{ section.settings.heading }}</h1>
-    <p>{{ section.settings.subheading }}</p>
-    <div class="hero__cta">
-      <a href="{{ section.settings.cta_url }}" class="btn btn-primary">{{ section.settings.cta_label }}</a>
-      <a href="#how-it-works" class="btn btn-ghost">איך זה עובד?</a>
+    {%- if section.settings.video_url != blank -%}
+      <video autoplay loop muted playsinline class="hero-media">
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.heading | escape }}" class="hero-media" />
+    {%- endif -%}
+    <div class="custom-hero-overlay"></div>
+  </div>
+  
+  <div class="custom-hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        {%- assign clean_heading = section.settings.heading | newline_to_br | replace: '<br />', '<br>' -%}
+        {%- assign lines = clean_heading | split: '<br>' -%}
+        {%- if lines.size > 1 -%}
+          {{ lines[0] }}<br><span class="gold-text-gradient">{{ lines[1] }}</span>
+        {%- else -%}
+          {{ section.settings.heading | newline_to_br }}
+        {%- endif -%}
+      </h1>
+      
+      <p class="hero-subheading">{{ section.settings.subheading }}</p>
+      
+      <div class="hero-cta-wrapper">
+        <a href="#design" onclick="document.getElementById('design')?.scrollIntoView({behavior: 'smooth'}); return false;" class="hero-cta-btn">
+          {{ section.settings.cta_label }}
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .custom-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 100px 20px 80px;
+    background-color: #121212;
+    z-index: 1;
+    direction: rtl;
+  }
+  
+  .custom-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.28;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  
+  .custom-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(18,18,18,0.2) 0%, rgba(18,18,18,0.7) 60%, #121212 100%);
+    z-index: 0;
+  }
+  
+  .custom-hero-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .hero-title {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(38px, 6.5vw, 68px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    color: #f5f5f5;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+  
+  .gold-text-gradient {
+    background: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #d4af37;
+    display: inline-block;
+  }
+  
+  .hero-subheading {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(15px, 2.2vw, 17px);
+    color: rgba(245, 245, 240, 0.75);
+    max-width: 600px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  
+  .hero-cta-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .hero-cta-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 36px;
+    background: #d4af37;
+    color: #121212;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 9999px;
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .hero-cta-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+    background: #e5bd3c;
+  }
+  
+  .hero-cta-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* Glow effects and animation styles */
+  .glow-orb-1 {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 250px;
+    height: 250px;
+    background: rgba(212,175,55,0.08);
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: pulseOrb 8s infinite ease-in-out;
+    pointer-events: none;
+  }
+  
+  .glow-orb-2 {
+    position: absolute;
+    bottom: 25%;
+    right: 15%;
+    width: 200px;
+    height: 200px;
+    background: rgba(212,175,55,0.04);
+    border-radius: 50%;
+    filter: blur(90px);
+    animation: pulseOrb 6s infinite ease-in-out;
+    animation-delay: 2s;
+    pointer-events: none;
+  }
+  
+  @keyframes pulseOrb {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 0.9; }
+  }
+
+  .hologram-beam {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 300px;
+    background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.4;
+    z-index: 1;
+  }
+  
+  .particle {
+    position: absolute;
+    background: rgba(212,175,55,0.6);
+    border-radius: 50%;
+    animation: floatUp 15s infinite linear;
+    bottom: -20px;
+  }
+  
+  .p-1 { left: 10%; width: 6px; height: 6px; animation-duration: 14s; animation-delay: 0s; }
+  .p-2 { left: 25%; width: 4px; height: 4px; animation-duration: 18s; animation-delay: 3s; filter: blur(1px); }
+  .p-3 { left: 45%; width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; }
+  .p-4 { left: 65%; width: 5px; height: 5px; animation-duration: 16s; animation-delay: 5s; filter: blur(1px); }
+  .p-5 { left: 80%; width: 7px; height: 7px; animation-duration: 15s; animation-delay: 2s; }
+  .p-6 { left: 90%; width: 4px; height: 4px; animation-duration: 20s; animation-delay: 4s; }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+  }
+</style>
 
 {% schema %}
 {
@@ -30,7 +253,7 @@
     { "type": "textarea", "id": "heading", "label": "Heading", "default": "הזיכרון שלך,\nתמיד איתך." },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "צמיד הקרנה יוקרתי המכיל את הרגעים היפים ביותר שלכם. איכות ללא פשרות, עיצוב נצחי ורגש שעובר בכל מבט." },
     { "type": "text", "id": "cta_label", "label": "CTA Label", "default": "הזמינו עכשיו" },
-    { "type": "url", "id": "cta_url", "label": "CTA URL", "default": "/products/lumibrace" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" },
     { "type": "text", "id": "video_url", "label": "Background Video URL", "default": "https://assets.mixkit.co/videos/preview/mixkit-light-particles-floating-in-a-dark-background-10-large.mp4" },
     { "type": "image_picker", "id": "image", "label": "Fallback Image Background" }
   ],

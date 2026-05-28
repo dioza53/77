@@ -34,8 +34,14 @@
   
   <div class="container mx-auto px-6 relative z-10 text-center py-12">
     <div class="space-y-8 max-w-4xl mx-auto">
-      <h1 class="text-4xl md:text-8xl font-black mb-6 tracking-tight leading-tight text-pearl bg-clip-text">
-        {{ section.settings.heading | newline_to_br }}
+      <h1 class="text-4xl md:text-8xl font-black mb-6 tracking-tight leading-tight text-pearl">
+        {%- assign clean_heading = section.settings.heading | newline_to_br | replace: '<br />', '<br>' -%}
+        {%- assign lines = clean_heading | split: '<br>' -%}
+        {%- if lines.size > 1 -%}
+          {{ lines[0] }}<br><span class="text-gold">{{ lines[1] }}</span>
+        {%- else -%}
+          {{ section.settings.heading | newline_to_br }}
+        {%- endif -%}
       </h1>
       <p class="text-base md:text-xl text-pearl/80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">{{ section.settings.subheading }}</p>
       <div class="flex flex-col md:flex-row items-center justify-center gap-4">

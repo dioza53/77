@@ -1,0 +1,222 @@
+<!-- Accessibility Floating Button & Menu Widget -->
+<div id="accessibility-widget" class="relative">
+  <!-- Floating Button -->
+  <button id="accessibility-btn" class="fixed left-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-110 active:scale-95 outline-none focus:ring-2 focus:ring-blue-400" aria-label="תפריט נגישות">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-accessibility"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4 22h14"/><path d="M20 22h.01"/><path d="M12 10v4"/><path d="m9 14 5 6"/></svg>
+  </button>
+
+  <!-- Accessibility Menu Overlay -->
+  <div id="accessibility-menu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#121212] border border-blue-500/30 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl text-right dir-rtl">
+      <!-- Header -->
+      <div class="bg-blue-600 p-6 text-white flex items-center justify-between">
+        <h3 class="text-xl font-bold flex items-center gap-2">
+          ♿ תפריט נגישות LumiBrace
+        </h3>
+        <button id="accessibility-close" class="text-white/80 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+        <p class="text-pearl/60 text-xs leading-relaxed">
+          אתר זה מונגש בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג-2013 ולתקן ישראלי ת״י 5568 ברמת AA.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Text Size -->
+          <button id="accessibility-text-increase" class="p-4 rounded-xl bg-pearl/5 border border-pearl/10 hover:border-blue-500 hover:bg-blue-500/10 text-pearl transition-all flex flex-col items-center justify-center gap-2">
+            <span class="text-lg font-bold">A+</span>
+            <span class="text-xs">הגדל טקסט</span>
+          </button>
+          <button id="accessibility-text-decrease" class="p-4 rounded-xl bg-pearl/5 border border-pearl/10 hover:border-blue-500 hover:bg-blue-500/10 text-pearl transition-all flex flex-col items-center justify-center gap-2">
+            <span class="text-lg font-bold">A-</span>
+            <span class="text-xs">הקטן טקסט</span>
+          </button>
+
+          <!-- Contrast modes -->
+          <button id="accessibility-high-contrast" class="p-4 rounded-xl bg-pearl/5 border border-pearl/10 hover:border-blue-500 hover:bg-blue-500/10 text-pearl transition-all flex flex-col items-center justify-center gap-2">
+            <span class="text-lg">🌗</span>
+            <span class="text-xs">ניגודיות גבוהה</span>
+          </button>
+          <button id="accessibility-grayscale" class="p-4 rounded-xl bg-pearl/5 border border-pearl/10 hover:border-blue-500 hover:bg-blue-500/10 text-pearl transition-all flex flex-col items-center justify-center gap-2">
+            <span class="text-lg">🔘</span>
+            <span class="text-xs">גווני אפור</span>
+          </button>
+
+          <!-- Helper modes -->
+          <button id="accessibility-readable-font" class="p-4 rounded-xl bg-pearl/5 border border-pearl/10 hover:border-blue-500 hover:bg-blue-500/10 text-pearl transition-all flex flex-col items-center justify-center gap-2">
+            <span class="text-lg">✍️</span>
+            <span class="text-xs">גופן קריא</span>
+          </button>
+          <button id="accessibility-highlight-links" class="p-4 rounded-xl bg-pearl/5 border border-pearl/10 hover:border-blue-500 hover:bg-blue-500/10 text-pearl transition-all flex flex-col items-center justify-center gap-2">
+            <span class="text-lg">🔗</span>
+            <span class="text-xs">הדגשת קישורים</span>
+          </button>
+        </div>
+
+        <!-- Reset Button -->
+        <button id="accessibility-reset" class="w-full py-3 bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/20 rounded-xl transition-all text-sm font-bold">
+          איפוס הגדרות נגישות
+        </button>
+
+        <div class="border-t border-pearl/10 pt-4 text-center">
+          <a href="/pages/accessibility-statement" class="text-blue-400 hover:underline text-xs">הצהרת נגישות מפורטת</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cookies Consent Banner -->
+<div id="cookies-banner" class="fixed bottom-6 right-6 left-6 md:right-auto md:max-w-md z-50 bg-[#121212]/95 backdrop-blur-md border border-gold/20 p-6 rounded-3xl shadow-2xl text-right dir-rtl hidden transition-all duration-300">
+  <div class="space-y-4">
+    <div class="flex items-center gap-2 text-gold font-bold">
+      <span>🍪</span>
+      <span>הגדרות עוגיות ופרטיות</span>
+    </div>
+    <p class="text-pearl/70 text-xs leading-relaxed">
+      אנו משתמשים בעוגיות על מנת לשפר את חווית הגלישה והקנייה שלך באתר. המשך הגלישה מהווה הסכמה לשימוש בעוגיות בהתאם למדיניות הפרטיות שלנו.
+    </p>
+    <div class="flex gap-3">
+      <button id="cookies-accept" class="flex-1 py-2.5 bg-gold hover:bg-gold/90 text-charcoal font-black rounded-xl text-xs transition-colors">
+        אישור והמשך
+      </button>
+      <button id="cookies-decline" class="px-4 py-2.5 bg-pearl/5 hover:bg-pearl/10 text-pearl/60 rounded-xl text-xs transition-colors">
+        דחה
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Accessibility Logic
+    const accessibilityBtn = document.getElementById('accessibility-btn');
+    const accessibilityMenu = document.getElementById('accessibility-menu');
+    const accessibilityClose = document.getElementById('accessibility-close');
+    const textIncreaseBtn = document.getElementById('accessibility-text-increase');
+    const textDecreaseBtn = document.getElementById('accessibility-text-decrease');
+    const highContrastBtn = document.getElementById('accessibility-high-contrast');
+    const grayscaleBtn = document.getElementById('accessibility-grayscale');
+    const readableFontBtn = document.getElementById('accessibility-readable-font');
+    const highlightLinksBtn = document.getElementById('accessibility-highlight-links');
+    const resetBtn = document.getElementById('accessibility-reset');
+
+    let textScale = 1;
+    let highContrast = false;
+    let grayscale = false;
+    let readableFont = false;
+    let highlightLinks = false;
+
+    // Toggle menu
+    accessibilityBtn.addEventListener('click', () => accessibilityMenu.classList.replace('hidden', 'flex'));
+    accessibilityClose.addEventListener('click', () => accessibilityMenu.classList.replace('flex', 'hidden'));
+    accessibilityMenu.addEventListener('click', (e) => {
+      if (e.target === accessibilityMenu) accessibilityMenu.classList.replace('flex', 'hidden');
+    });
+
+    // Font Size Scaling
+    textIncreaseBtn.addEventListener('click', () => {
+      if (textScale < 1.3) {
+        textScale += 0.1;
+        document.documentElement.style.fontSize = `${textScale * 100}%`;
+      }
+    });
+
+    textDecreaseBtn.addEventListener('click', () => {
+      if (textScale > 0.8) {
+        textScale -= 0.1;
+        document.documentElement.style.fontSize = `${textScale * 100}%`;
+      }
+    });
+
+    // High Contrast toggle
+    highContrastBtn.addEventListener('click', () => {
+      highContrast = !highContrast;
+      document.body.classList.toggle('accessibility-contrast', highContrast);
+      highContrastBtn.classList.toggle('bg-blue-500/20', highContrast);
+    });
+
+    // Grayscale toggle
+    grayscaleBtn.addEventListener('click', () => {
+      grayscale = !grayscale;
+      document.body.classList.toggle('accessibility-grayscale', grayscale);
+      grayscaleBtn.classList.toggle('bg-blue-500/20', grayscale);
+    });
+
+    // Readable font toggle
+    readableFontBtn.addEventListener('click', () => {
+      readableFont = !readableFont;
+      document.body.classList.toggle('accessibility-readable-font', readableFont);
+      readableFontBtn.classList.toggle('bg-blue-500/20', readableFont);
+    });
+
+    // Highlight Links toggle
+    highlightLinksBtn.addEventListener('click', () => {
+      highlightLinks = !highlightLinks;
+      document.body.classList.toggle('accessibility-highlight-links', highlightLinks);
+      highlightLinksBtn.classList.toggle('bg-blue-500/20', highlightLinks);
+    });
+
+    // Reset settings
+    resetBtn.addEventListener('click', () => {
+      textScale = 1;
+      highContrast = false;
+      grayscale = false;
+      readableFont = false;
+      highlightLinks = false;
+
+      document.documentElement.style.fontSize = '';
+      document.body.classList.remove('accessibility-contrast', 'accessibility-grayscale', 'accessibility-readable-font', 'accessibility-highlight-links');
+      
+      const activeBtns = [highContrastBtn, grayscaleBtn, readableFontBtn, highlightLinksBtn];
+      activeBtns.forEach(btn => btn.classList.remove('bg-blue-500/20'));
+    });
+
+    // Cookie Banner Logic
+    const cookiesBanner = document.getElementById('cookies-banner');
+    const acceptCookiesBtn = document.getElementById('cookies-accept');
+    const declineCookiesBtn = document.getElementById('cookies-decline');
+
+    if (!localStorage.getItem('cookies-consent')) {
+      setTimeout(() => {
+        cookiesBanner.classList.remove('hidden');
+      }, 1000);
+    }
+
+    acceptCookiesBtn.addEventListener('click', () => {
+      localStorage.setItem('cookies-consent', 'accepted');
+      cookiesBanner.classList.add('hidden');
+    });
+
+    declineCookiesBtn.addEventListener('click', () => {
+      localStorage.setItem('cookies-consent', 'declined');
+      cookiesBanner.classList.add('hidden');
+    });
+  });
+</script>
+
+<style>
+  /* Accessibility Custom CSS Injections */
+  .accessibility-contrast {
+    background-color: black !important;
+    color: white !important;
+  }
+  .accessibility-contrast a, .accessibility-contrast button {
+    color: #ffeb3b !important;
+    border-color: #ffeb3b !important;
+  }
+  .accessibility-grayscale {
+    filter: grayscale(1) !important;
+  }
+  .accessibility-readable-font * {
+    font-family: Arial, sans-serif !important;
+  }
+  .accessibility-highlight-links a {
+    text-decoration: underline !important;
+    outline: 2px dashed #3b82f6 !important;
+    background-color: rgba(59, 130, 246, 0.1) !important;
+  }
+</style>

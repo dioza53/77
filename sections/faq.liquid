@@ -1,14 +1,22 @@
-<section class="section container">
-  <div class="section-head">
-    <h2>{{ section.settings.heading }}</h2>
-  </div>
-  <div style="max-width:760px;margin:0 auto">
-    {%- for block in section.blocks -%}
-      <details class="faq__item">
-        <summary class="faq__q">{{ block.settings.question }}</summary>
-        <div class="faq__a">{{ block.settings.answer }}</div>
-      </details>
-    {%- endfor -%}
+<section class="py-24 bg-charcoal relative overflow-hidden" id="faq">
+  <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/5 via-transparent to-transparent pointer-events-none"></div>
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl md:text-5xl font-black text-pearl tracking-tight">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-4">
+      {%- for block in section.blocks -%}
+        <details class="group border border-gold/20 rounded-3xl overflow-hidden bg-gold/5 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="w-full p-6 flex items-center justify-between hover:bg-gold/10 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gold text-right">
+            <span class="font-bold text-base md:text-lg text-pearl group-open:text-gold transition-colors">{{ block.settings.question }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus w-5 h-5 text-gold transition-transform duration-300 group-open:rotate-45 shrink-0"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+          </summary>
+          <div class="p-6 pt-0 text-sm md:text-base text-pearl/70 leading-relaxed font-light text-right">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 

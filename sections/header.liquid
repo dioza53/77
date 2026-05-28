@@ -1,27 +1,46 @@
-{% comment %} Header section — pinned, with cart count and mobile menu {% endcomment %}
-<div class="announcement">{{ section.settings.announcement_text }}</div>
-<header class="site-header">
-  <div class="site-header__inner">
-    <a href="/" class="site-header__logo gold-grad">{{ shop.name | default: 'LUMIBRACE' }}</a>
-    <nav class="site-header__nav" aria-label="ראשי">
-      {%- for link in section.blocks -%}
-        <a href="{{ link.settings.url }}">{{ link.settings.label }}</a>
-      {%- endfor -%}
-    </nav>
-    <a href="/cart" class="site-header__cart" aria-label="סל קניות">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
-      </svg>
-      <span class="site-header__cart-count" data-cart-count {% if cart.item_count == 0 %}style="display:none"{% endif %}>{{ cart.item_count }}</span>
-    </a>
+<div class="fixed top-0 left-0 right-0 z-50">
+  {% if section.settings.announcement_text != blank %}
+  <div role="status" aria-label="הודעה חשובה" class="bg-gold text-charcoal py-1.5 md:py-2 px-4 text-center text-[10px] md:text-sm font-bold tracking-wide">
+    {{ section.settings.announcement_text }}
   </div>
-</header>
+  {% endif %}
+  <header class="transition-all duration-300 bg-charcoal/40 backdrop-blur-sm py-4 md:py-6">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <button aria-label="פתח תפריט" aria-expanded="false" class="p-2 -m-2 lg:hidden text-pearl hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold outline-none rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+        </button>
+        <a href="{{ routes.root_url }}" class="text-lg md:text-2xl font-bold tracking-tighter gold-text-gradient whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg px-2">
+          {{ shop.name | default: 'LUMIBRACE' }}
+        </a>
+      </div>
+      <nav aria-label="תפריט ראשי" class="hidden lg:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
+        {%- for link in section.blocks -%}
+          <a href="{{ link.settings.url }}" class="hover:text-gold transition-colors focus-visible:text-gold outline-none">{{ link.settings.label }}</a>
+        {%- endfor -%}
+      </nav>
+      <div class="flex items-center gap-4 md:gap-6">
+        <a href="{{ section.settings.cta_link | default: '#design' }}" class="hidden md:block px-6 py-2 bg-gold text-charcoal font-bold rounded-full text-sm hover:scale-105 transition-transform focus-visible:ring-2 focus-visible:ring-white outline-none">
+          {{ section.settings.cta_text | default: 'עצבו עכשיו' }}
+        </a>
+        <a href="{{ routes.cart_url }}" aria-label="סל הקניות" class="relative cursor-pointer p-2 -m-2 text-pearl hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold outline-none rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag w-6 h-6" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+          <span class="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center" {% if cart.item_count == 0 %}style="display:none"{% endif %} data-cart-count>
+            {{ cart.item_count }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
-    { "type": "text", "id": "announcement_text", "label": "Announcement", "default": "מבצע: 50% הנחה לזמן מוגבל · משלוח לכל הארץ 🚚" }
+    { "type": "text", "id": "announcement_text", "label": "Announcement", "default": "מבצע: 50% הנחה לזמן מוגבל | משלוח לכל חלקי הארץ 🚚" },
+    { "type": "text", "id": "cta_text", "label": "CTA Text", "default": "עצבו עכשיו" },
+    { "type": "url", "id": "cta_link", "label": "CTA Link" }
   ],
   "blocks": [
     {
@@ -29,13 +48,13 @@
       "name": "Nav link",
       "settings": [
         { "type": "text", "id": "label", "label": "Label", "default": "הסיפור שלנו" },
-        { "type": "url", "id": "url", "label": "URL", "default": "/" }
+        { "type": "url", "id": "url", "label": "URL" }
       ]
     }
   ],
   "default": {
     "blocks": [
-      { "type": "link", "settings": { "label": "הסיפור שלנו", "url": "/pages/about" } },
+      { "type": "link", "settings": { "label": "הסיפור שלנו", "url": "/#our-story" } },
       { "type": "link", "settings": { "label": "מעקב משלוח", "url": "/pages/track-order" } }
     ]
   }

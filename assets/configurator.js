@@ -155,7 +155,7 @@
 
     variantInput.value = variant.id;
     submitBtn.disabled = !variant.available;
-    submitBtn.querySelector('span').textContent = variant.available ? 'הוספה לסל' : 'אזל מהמלאי';
+    submitBtn.querySelector('span').textContent = variant.available ? 'קנו עכשיו ב-50% הנחה' : 'אזל מהמלאי';
     
     if (priceEl) priceEl.textContent = formatMoney(variant.price);
     if (compareEl) {

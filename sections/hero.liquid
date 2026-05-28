@@ -2,23 +2,27 @@
   LumiBrace Premium Hero Section — customizable video/image background and metallic gradients
 {% endcomment %}
 
-<section class="hero">
-  {%- if section.settings.video_url != blank -%}
-    <video autoplay loop muted playsinline class="hero__video-bg">
-      <source src="{{ section.settings.video_url }}" type="video/mp4">
-    </video>
-  {%- elsif section.settings.image != blank -%}
-    <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.heading }}" class="hero__video-bg" style="object-fit: cover;">
-  {%- endif -%}
-
-  <div class="hero__overlay"></div>
-
-  <div class="container text-center">
-    <h1 class="gold-grad">{{ section.settings.heading }}</h1>
-    <p>{{ section.settings.subheading }}</p>
-    <div class="hero__cta">
-      <a href="{{ section.settings.cta_url }}" class="btn btn-primary">{{ section.settings.cta_label }}</a>
-      <a href="#how-it-works" class="btn btn-ghost">איך זה עובד?</a>
+<section class="relative min-h-[90vh] md:h-screen flex items-center justify-center overflow-hidden pt-20">
+  <div class="absolute inset-0 z-0">
+    {%- if section.settings.video_url != blank -%}
+      <video autoPlay loop muted playsInline class="w-full h-full object-cover opacity-40">
+        <source src="{{ section.settings.video_url }}" type="video/mp4"/>
+      </video>
+    {%- elsif section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="{{ section.settings.heading | escape }}" class="w-full h-full object-cover opacity-40" />
+    {%- endif -%}
+    <div class="absolute inset-0 bg-gradient-to-b from-charcoal/20 via-charcoal/40 to-charcoal"></div>
+  </div>
+  
+  <div class="container mx-auto px-6 relative z-10 text-center py-12">
+    <div class="animate-fade-in-up">
+      <h1 class="text-4xl md:text-8xl font-bold mb-6 tracking-tighter leading-tight">{{ section.settings.heading }}</h1>
+      <p class="text-base md:text-xl text-pearl/80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">{{ section.settings.subheading }}</p>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+        <a href="{{ section.settings.cta_url }}" class="w-full md:w-auto px-10 py-4 bg-gold text-charcoal font-bold rounded-full text-lg hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-gold/20 focus-visible:ring-2 focus-visible:ring-white outline-none block text-center">
+          {{ section.settings.cta_label }}
+        </a>
+      </div>
     </div>
   </div>
 </section>

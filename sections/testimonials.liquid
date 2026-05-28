@@ -1,15 +1,25 @@
-<section class="section container">
-  <div class="section-head">
-    <h2>{{ section.settings.heading }}</h2>
-  </div>
-  <div class="testimonials">
-    {%- for block in section.blocks -%}
-      <div class="card">
-        <div class="testimonial__stars">★★★★★</div>
-        <p>"{{ block.settings.quote }}"</p>
-        <div class="testimonial__author">— {{ block.settings.name }}{% if block.settings.location != blank %}, {{ block.settings.location }}{% endif %}</div>
-      </div>
-    {%- endfor -%}
+<section class="py-24 bg-charcoal relative overflow-hidden">
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl md:text-5xl font-black text-pearl tracking-tight">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {%- for block in section.blocks -%}
+        <div class="bg-pearl/5 border border-pearl/10 rounded-3xl p-8 flex flex-col justify-between hover:bg-gold/5 hover:border-gold/30 transition-all duration-300 group" {{ block.shopify_attributes }}>
+          <div class="space-y-4">
+            <div class="flex gap-1">
+              {%- for i in (1..5) -%}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gold"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              {%- endfor -%}
+            </div>
+            <p class="text-pearl/80 text-lg leading-relaxed font-medium">"{{ block.settings.quote }}"</p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-pearl/10">
+            <p class="text-pearl font-bold">— {{ block.settings.name }}{% if block.settings.location != blank %}, <span class="text-pearl/40 font-normal">{{ block.settings.location }}</span>{% endif %}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 

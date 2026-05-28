@@ -8,21 +8,24 @@
 {%- if product != blank -%}
 {%- assign first_variant = product.selected_or_first_available_variant -%}
 
-<section class="product container" data-product>
-  <div class="product__grid">
-    
-    {% comment %} Left side: Interactive Galleries & Circle Projection Previews {% endcomment %}
-    <div class="product__media-container">
-      <div class="gallery-toggle" role="tablist">
-        <button type="button" class="gallery-toggle__btn is-active" data-gallery-tab="product" role="tab" aria-selected="true">
-          הצמיד
-        </button>
-        <button type="button" class="gallery-toggle__btn" data-gallery-tab="projection" role="tab" aria-selected="false">
-          ההקרנה
-        </button>
-      </div>
+<section id="design" class="py-24 bg-charcoal relative overflow-hidden" data-product>
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-[1.2fr_1fr] gap-16 items-start">
+      
+      {% comment %} Left side: Interactive Galleries & Circle Projection Previews {% endcomment %}
+      <div class="space-y-8 lg:sticky lg:top-32">
+      <div class="relative group">
+        <div class="space-y-6">
+          <div class="flex p-1 bg-pearl/5 border border-pearl/10 rounded-2xl w-fit mx-auto" role="tablist" aria-label="מצבי תצוגה">
+            <button type="button" class="px-4 md:px-6 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-gold bg-gold text-charcoal shadow-lg gallery-toggle__btn is-active" data-gallery-tab="product" role="tab" aria-selected="true">
+              הצמיד
+            </button>
+            <button type="button" class="px-4 md:px-6 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-gold text-pearl/40 hover:text-pearl gallery-toggle__btn" data-gallery-tab="projection" role="tab" aria-selected="false">
+              ההקרנה
+            </button>
+          </div>
 
-      <div class="product__media-wrapper">
+          <div class="relative aspect-square rounded-[2.5rem] overflow-hidden bg-black/20 border border-pearl/5 group shadow-2xl touch-pan-y product__media-wrapper">
         {% comment %} Main product image gallery {% endcomment %}
         <div class="product__gallery" data-gallery-content="product">
           {%- if product.featured_image -%}
@@ -49,32 +52,46 @@
             </div>
             <div class="projection-badge">תצוגה מקדימה של ההקרנה</div>
           </div>
+            </div>
         </div>
-      </div>
+      </div></div>
       
       {% comment %} Thumbnails {% endcomment %}
-      <div class="product__thumbnails" data-gallery-thumbnails>
+      <div class="grid grid-cols-5 gap-2 md:gap-3 mt-6" data-gallery-thumbnails>
         {%- for image in product.images -%}
-          <button type="button" class="thumb-btn {% if forloop.first %}is-active{% endif %}" data-thumb-index="{{ forloop.index0 }}" data-image-url="{{ image | image_url: width: 1200 }}">
-            <img src="{{ image | image_url: width: 150 }}" alt="תצוגה מקדימה {{ forloop.index }}" loading="lazy">
+          <button type="button" class="aspect-square rounded-xl overflow-hidden border-2 transition-colors relative group thumb-btn {% if forloop.first %}border-gold shadow-lg shadow-gold/20 is-active{% else %}border-pearl/10 hover:border-gold/30{% endif %}" data-thumb-index="{{ forloop.index0 }}" data-image-url="{{ image | image_url: width: 1200 }}">
+            <img src="{{ image | image_url: width: 150 }}" alt="תצוגה מקדימה {{ forloop.index }}" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
           </button>
         {%- endfor -%}
       </div>
-
-    {% comment %} Right side: Product configuration details and forms {% endcomment %}
-    <div class="product__info">
-      <h1 class="product__title">{{ product.title }}</h1>
-      
-      <div class="product__rating-summary">
-        <span class="stars">★★★★★</span>
-        <span class="rating-text">4.9/5 (1,200+ ביקורות מאומתות)</span>
       </div>
 
-      <div class="product__price-container">
-        <span class="product__price" data-price>{{ first_variant.price | money }}</span>
+    {% comment %} Right side: Product configuration details and forms {% endcomment %}
+    <div class="space-y-10">
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <div class="flex text-gold">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-current"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-current"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-current"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-current"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-current"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+            </div>
+            <span class="text-sm text-pearl/60">(4.9/5 מתוך 1,240 ביקורות)</span>
+          </div>
+          <button class="p-3 bg-pearl/5 border border-pearl/10 rounded-full text-pearl/60 hover:text-gold hover:border-gold/50 transition-all group" title="שתפו את המוצר"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 lucide-share-2 w-5 h-5 group-hover:scale-110 transition-transform"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+        </div>
+        <div class="flex flex-col gap-2 mb-4">
+          <h2 class="text-3xl md:text-6xl font-black tracking-tighter leading-tight">{{ product.title }}<span class="block text-xl md:text-2xl font-bold text-pearl/40 mt-2 tracking-normal">צמיד הזיכרונות המקורי עם הקרנת תמונה אישית</span></h2>
+        </div>
+      <div class="flex items-center gap-4 mb-6">
+        <span class="text-4xl md:text-6xl font-black gold-text-gradient drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]" data-price>{{ first_variant.price | money }}</span>
         {%- if first_variant.compare_at_price > first_variant.price -%}
-          <del class="product__compare-price" data-compare-price>{{ first_variant.compare_at_price | money }}</del>
-          <span class="discount-badge" data-discount-badge>50% הנחה</span>
+          <div class="flex flex-col">
+            <span class="text-xl text-pearl/40 line-through decoration-gold/50" data-compare-price>{{ first_variant.compare_at_price | money }}</span>
+            <span class="px-3 py-1 bg-gold/20 text-gold text-[10px] font-bold rounded-full uppercase tracking-wider w-fit" data-discount-badge>50% הנחה</span>
+          </div>
         {%- endif -%}
       </div>
 
@@ -88,195 +105,130 @@
 
         {% comment %} Custom interactive Color & Bundle options {% endcomment %}
         {%- for option in product.options_with_values -%}
-          <div class="option-group" data-option-group-position="{{ option.position }}">
-            <label class="option-group__label">{{ option.name }}</label>
-            <div class="option-pills">
+          <div class="space-y-3 mb-8" data-option-group-position="{{ option.position }}">
+            <p class="text-sm font-bold text-pearl/60">{{ option.name }}:</p>
+            <div class="flex gap-4">
               {%- for value in option.values -%}
                 {%- assign input_id = 'opt-' | append: option.position | append: '-' | append: forloop.index -%}
-                <label class="option-pill {% if value == option.selected_value %}is-active{% endif %}" for="{{ input_id }}">
+                <label class="flex-1 p-4 rounded-2xl border-2 transition-all flex flex-col items-center gap-2 cursor-pointer outline-none focus-within:ring-2 focus-within:ring-gold option-pill {% if value == option.selected_value %}border-gold bg-gold/5 is-active{% else %}border-pearl/10 hover:border-pearl/30{% endif %}" for="{{ input_id }}">
                   <input
                     type="radio"
                     id="{{ input_id }}"
                     name="options[{{ option.name | escape }}]"
                     value="{{ value | escape }}"
+                    class="sr-only"
                     data-option-input
                     data-option-position="{{ option.position }}"
                     {% if value == option.selected_value %}checked{% endif %}
                   >
-                  <span class="option-pill__title">
-                    {%- if option.name contains 'צבע' or option.name contains 'Color' -%}
-                      {%- if value contains 'כסף' or value contains 'Silver' -%}<span class="color-swatch color-swatch--silver"></span>{%- endif -%}
-                      {%- if value contains 'זהב' or value contains 'Gold' -%}<span class="color-swatch color-swatch--gold"></span>{%- endif -%}
-                      {%- if value contains 'מעורב' or value contains 'Mixed' -%}<span class="color-swatch color-swatch--mixed"></span>{%- endif -%}
-                    {%- endif -%}
-                    {{ value }}
-                  </span>
+                  {%- if option.name contains 'צבע' or option.name contains 'Color' -%}
+                    <div class="w-8 h-8 rounded-full shadow-inner" style="background-color:{% if value contains 'כסף' or value contains 'Silver' %}#C0C0C0{% elsif value contains 'זהב' or value contains 'Gold' %}#D4AF37{% else %}#1a1a1a{% endif %}"></div>
+                  {%- endif -%}
+                  <span class="text-[10px] font-bold uppercase tracking-widest">{{ value }}</span>
                 </label>
               {%- endfor -%}
             </div>
           </div>
         {%- endfor -%}
 
-        {% comment %} Multi-Bracelet color customizer for "זוג" {% endcomment %}
-        <div class="option-group hidden" data-pair-colors-selector>
-          <label class="option-group__label">התאמת צבעי הזוג</label>
-          <div class="pair-color-grids">
-            <div class="pair-color-select">
-              <span class="pair-color-title">צבע צמיד 1:</span>
-              <div class="option-pills option-pills--small">
-                <label class="option-pill is-active" for="pair-c1-gold">
-                  <input type="radio" id="pair-c1-gold" name="pair-color-1" value="זהב" checked data-pair-color-input="1">
-                  <span class="option-pill__title"><span class="color-swatch color-swatch--gold"></span>זהב</span>
-                </label>
-                <label class="option-pill" for="pair-c1-silver">
-                  <input type="radio" id="pair-c1-silver" name="pair-color-1" value="כסף" data-pair-color-input="1">
-                  <span class="option-pill__title"><span class="color-swatch color-swatch--silver"></span>כסף</span>
-                </label>
+        <input type="hidden" name="properties[אופן שליחת התמונה]" value="שליחה בוואטסאפ לאחר הרכישה">
+        
+        <div class="space-y-3 mb-8">
+          <p class="text-sm font-bold text-pearl/60">התמונה שלכם:</p>
+          <div class="relative rounded-3xl border border-gold/30 bg-gradient-to-br from-gold/10 via-pearl/[0.03] to-transparent p-6 md:p-7 text-right overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative flex items-start gap-4">
+              <div class="shrink-0 w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-6 h-6 text-gold" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+              </div>
+              <div class="space-y-2">
+                <p class="text-base font-black text-pearl leading-snug">ליווי אישי לבחירת התמונה</p>
+                <p class="text-[13px] text-pearl/70 leading-relaxed">מיד לאחר ההזמנה ניצור איתכם קשר אישי בוואטסאפ או במייל, נעבור איתכם על התמונות שלכם ונבחר יחד את התמונה המושלמת — זו שתיראה הכי יפה בהקרנה על הצמיד.</p>
+                <ul class="space-y-1.5 pt-1">
+                  <li class="flex items-center gap-2 text-[12px] text-pearl/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-3.5 h-3.5 text-gold shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <span>יחס אישי — לא טופס אוטומטי</span>
+                  </li>
+                  <li class="flex items-center gap-2 text-[12px] text-pearl/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-3.5 h-3.5 text-gold shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <span>בדיקת איכות התמונה לפני ההדפסה</span>
+                  </li>
+                  <li class="flex items-center gap-2 text-[12px] text-pearl/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-3.5 h-3.5 text-gold shrink-0" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <span>שינויים והתאמות חינם עד שתהיו מרוצים</span>
+                  </li>
+                </ul>
+                <p class="text-[11px] text-pearl/50 pt-2 leading-relaxed">אין מה להעלות עכשיו — פשוט סיימו את ההזמנה וניצור איתכם קשר תוך 24 שעות.</p>
               </div>
             </div>
-            <div class="pair-color-select" style="margin-top: 12px;">
-              <span class="pair-color-title">צבע צמיד 2:</span>
-              <div class="option-pills option-pills--small">
-                <label class="option-pill is-active" for="pair-c2-gold">
-                  <input type="radio" id="pair-c2-gold" name="pair-color-2" value="זהב" checked data-pair-color-input="2">
-                  <span class="option-pill__title"><span class="color-swatch color-swatch--gold"></span>זהב</span>
-                </label>
-                <label class="option-pill" for="pair-c2-silver">
-                  <input type="radio" id="pair-c2-silver" name="pair-color-2" value="כסף" data-pair-color-input="2">
-                  <span class="option-pill__title"><span class="color-swatch color-swatch--silver"></span>כסף</span>
-                </label>
-              </div>
-            </div>
           </div>
-        </div>
-
-        {% comment %} Upload method selector {% endcomment %}
-        <div class="option-group">
-          <label class="option-group__label">איך תרצו לשלוח את התמונה?</label>
-          <div class="option-pills">
-            <label class="option-pill is-active" for="method-upload">
-              <input type="radio" id="method-upload" name="properties[אופן שליחת התמונה]" value="העלאה ישירה באתר" checked data-method-input="upload">
-              <span class="option-pill__title">העלאה ישירה באתר 📸</span>
-              <span class="option-pill__sub">מומלץ ומהיר</span>
-            </label>
-            <label class="option-pill" for="method-whatsapp">
-              <input type="radio" id="method-whatsapp" name="properties[אופן שליחת התמונה]" value="שליחה בוואטסאפ לאחר הרכישה" data-method-input="whatsapp">
-              <span class="option-pill__title">שליחה בוואטסאפ / מייל 💬</span>
-              <span class="option-pill__sub">נחזור אליכם לאחר ההזמנה</span>
-            </label>
-          </div>
-        </div>
-
-        {% comment %} Image Upload zone 1 {% endcomment %}
-        <div class="option-group" data-upload-group="1">
-          <label class="option-group__label" data-upload-title-1>תמונה לצמיד שלכם</label>
-          <label class="upload-zone" data-upload-zone="1">
-            <svg class="upload-zone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span data-upload-label="1">לחצו או גררו תמונה לכאן</span>
-            <small class="muted">תמונה חדה וברורה · מקסימום 15MB</small>
-            <input type="file" accept="image/*" name="properties[תמונה לצמיד 1]" data-upload-input="1">
-            <div class="upload-zone__preview-container hidden" data-preview-container="1">
-              <img class="upload-zone__preview" data-upload-preview="1" alt="תצוגה מקדימה">
-              <button type="button" class="upload-zone__remove" data-upload-remove="1" aria-label="הסרת תמונה">×</button>
-            </div>
-          </label>
-        </div>
-
-        {% comment %} Image Upload zone 2 (Pair Only) {% endcomment %}
-        <div class="option-group hidden" data-pair-only data-upload-group="2">
-          <label class="option-group__label">תמונה לצמיד השני (אופציונלי — אחרת ישוכפל מצמיד 1)</label>
-          <label class="upload-zone" data-upload-zone="2">
-            <svg class="upload-zone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span data-upload-label="2">לחצו להעלאת תמונה לצמיד השני</span>
-            <small class="muted">אופציונלי</small>
-            <input type="file" accept="image/*" name="properties[תמונה לצמיד 2]" data-upload-input="2">
-            <div class="upload-zone__preview-container hidden" data-preview-container="2">
-              <img class="upload-zone__preview" data-upload-preview="2" alt="תצוגה מקדימה">
-              <button type="button" class="upload-zone__remove" data-upload-remove="2" aria-label="הסרת תמונה">×</button>
-            </div>
-          </label>
-        </div>
-
-        {% comment %} WhatsApp / Mail info section {% endcomment %}
-        <div class="option-group info-banner hidden" data-whatsapp-info-banner>
-          <div class="info-banner__icon">💡</div>
-          <div class="info-banner__text">
-            <strong>רעיון מצוין!</strong> השלימו את ההזמנה כעת, ומיד לאחריה ניצור איתכם קשר אישי בוואטסאפ או במייל כדי לקבל מכם את התמונה (או שתי תמונות נפרדות) ולדאוג שהן יצאו מושלמות בייצור.
-          </div>
-        </div>
-
-        {% comment %} Optional Gift Note / Engraving {% endcomment %}
-        <div class="option-group">
-          <label class="option-group__label" for="engraving">הקדשה אישית או חריטה (אופציונלי)</label>
-          <textarea id="engraving" class="form-text" name="properties[הקדשה]" maxlength="120" placeholder="לדוגמה: אוהב אותך לנצח, 24.12.2023..."></textarea>
         </div>
 
         {% comment %} Purchase Buttons {% endcomment %}
-        <button type="submit" class="btn btn-primary btn-block btn-buy" data-add-to-cart>
-          <span>הוספה לסל</span>
+        <button type="submit" class="w-full py-6 bg-gold text-charcoal font-black rounded-[2rem] text-xl shadow-[0_20px_50px_rgba(212,175,55,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group relative overflow-hidden focus-visible:ring-2 focus-visible:ring-white outline-none disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 btn-buy" data-add-to-cart>
+          <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out"></div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-6 h-6"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+          <span>קנו עכשיו ב-50% הנחה</span>
         </button>
 
         <div data-form-error class="form-error-msg hidden"></div>
       </form>
 
-      {% comment %} trust points badges {% endcomment %}
-      <div class="trust">
-        <div class="trust__item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <span>אחריות לכל החיים</span>
+      <div class="grid grid-cols-3 gap-4 mt-8">
+        <div class="flex flex-col items-center text-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-pearl/5 flex items-center justify-center text-pearl/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck w-5 h-5"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+          </div>
+          <span class="text-[10px] font-bold text-pearl/40 uppercase tracking-widest">משלוח מהיר</span>
         </div>
-        <div class="trust__item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-          </svg>
-          <span>משלוח מבוטח חינם</span>
+        <div class="flex flex-col items-center text-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-pearl/5 flex items-center justify-center text-pearl/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check w-5 h-5"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </div>
+          <span class="text-[10px] font-bold text-pearl/40 uppercase tracking-widest">איכות פרימיום</span>
         </div>
-        <div class="trust__item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-          <span>14 ימי החזרה</span>
-        </div>
-        <div class="trust__item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <span>רכישה מאובטחת</span>
+        <div class="flex flex-col items-center text-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-pearl/5 flex items-center justify-center text-pearl/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock w-5 h-5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <span class="text-[10px] font-bold text-pearl/40 uppercase tracking-widest">תשלום מאובטח</span>
         </div>
       </div>
 
       {% comment %} Sizing Guide & Sizing Tips Accordions {% endcomment %}
-      <div class="details-accordions">
-        <details class="details-acc">
-          <summary class="details-acc__summary">
-            <span class="details-acc__title">📏 מדריך מידות - מתאים ב-100%</span>
-            <span class="details-acc__icon">+</span>
+      <div class="space-y-4">
+        <details class="group border border-gold/20 rounded-3xl overflow-hidden bg-gold/5 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="w-full p-5 flex items-center justify-between hover:bg-gold/10 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gold">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ruler w-4 h-4"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"></path><path d="m14.5 12.5 2-2"></path><path d="m11.5 9.5 2-2"></path><path d="m8.5 6.5 2-2"></path><path d="m17.5 15.5 2-2"></path></svg>
+              </div>
+              <span class="font-bold text-sm">איך עובדות המידות?</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-5 h-5 text-gold transition-transform duration-300 group-open:rotate-180"><path d="m6 9 6 6 6-6"></path></svg>
           </summary>
-          <div class="details-acc__content font-light">
-            <p><strong>מידה אחת שמתאימה לכולם (One Size Fits All):</strong> צמידי LumiBrace מעוצבים בשיטה מתכווננת יוקרתית המיוצרת ברוחב קלאסי של 0.8 ס"מ המתאים לגברים ולנשים כאחד.</p>
-            <p style="margin-top:8px"><strong>אורך הצמיד:</strong> אורך בסיס של 16 ס"מ ועוד 5 ס"מ של שרשרת הארכה חזקה. ניתן לסגור ולכוון את הצמיד בכל נקודה בין 16 ס"מ ל-21 ס"מ.</p>
-            <p style="margin-top:8px"><strong>מעולה כמתנה:</strong> מאחר והצמיד מכסה לחלוטין את כל טווחי המידות הסטנדרטיים, אין צורך לנחש או למדוד את פרק כף היד של מקבל המתנה מראש!</p>
+          <div class="p-5 pt-0 text-sm text-pearl/70 leading-relaxed font-light">
+            <p><strong>מידה אחת שמתאימה לכולם:</strong> צמידי LumiBrace מעוצבים בשיטה מתכווננת המתאימה לכולם.</p>
+            <p class="mt-2"><strong>אורך הצמיד:</strong> 16 ס"מ בסיס + 5 ס"מ הארכה (16-21 ס"מ).</p>
+            <p class="mt-2"><strong>מתנה מושלמת:</strong> אין צורך לנחש מידות!</p>
           </div>
         </details>
 
-        <details class="details-acc">
-          <summary class="details-acc__summary">
-            <span class="details-acc__title">💡 טיפים לבחירת תמונה מנצחת</span>
-            <span class="details-acc__icon">+</span>
+        <details class="group border border-gold/20 rounded-3xl overflow-hidden bg-gold/5 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="w-full p-5 flex items-center justify-between hover:bg-gold/10 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gold">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb w-4 h-4"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>
+              </div>
+              <span class="font-bold text-sm">טיפים לעיצוב מושלם</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down w-5 h-5 text-gold transition-transform duration-300 group-open:rotate-180"><path d="m6 9 6 6 6-6"></path></svg>
           </summary>
-          <div class="details-acc__content font-light">
-            <p>כדי שההקרנה בתוך הצמיד תצא הכי חדה ומרגשת שיש, מומלץ לעקוב אחר הטיפים הבאים:</p>
-            <ul style="margin-top:8px; padding-inline-start: 16px; list-style-type: disc;">
-              <li><strong>חדות ואיכות:</strong> בחרו תמונה מקורית וחדה ככל האפשר. הימנעו מצילומי מסך (Screenshots) מטושטשים.</li>
-              <li><strong>תאורה חזקה:</strong> תמונות שצולמו באור יום, תחת שמש או תאורה טובה יראו מעולה. תמונות חשוכות יקשו על ראיית הפרטים.</li>
-              <li><strong>מרכז הפוקוס:</strong> ודאו שהפנים של האנשים או בעל החיים נמצאים יחסית במרכז התמונה.</li>
-              <li><strong>רקע פשוט:</strong> רקע נקי או מטושטש מעט יגרום לנושא המרכזי לבלוט בצורה מושלמת בתוך העדשה.</li>
+          <div class="p-5 pt-0 text-sm text-pearl/70 leading-relaxed font-light">
+            <ul class="list-disc list-inside space-y-1">
+              <li>בחרו תמונה חדה וברורה.</li>
+              <li>תאורה טובה עושה את ההבדל.</li>
+              <li>מרכזו את נושא התמונה.</li>
             </ul>
           </div>
         </details>

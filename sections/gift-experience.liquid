@@ -2,117 +2,86 @@
   LumiBrace Premium Gift Experience Section — Interactive 3D floating box & card, with custom lists
 {% endcomment %}
 
-<section class="section" style="background-color: #050505; position: relative; overflow: hidden;">
-  {% comment %} Decorative Background glow {% endcomment %}
-  <div style="position: absolute; top: 0; right: 0; width: 350px; height: 350px; background: rgba(212,175,55,0.06); border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 1;"></div>
+<section class="py-24 bg-charcoal relative overflow-hidden" id="gift">
+  <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/10 rounded-full blur-[100px] pointer-events-none"></div>
   
-  <div class="container" style="position: relative; z-index: 2;">
-    <div class="product__grid" style="align-items: center; gap: 64px;">
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
       
-      {% comment %} Left side: Marketing text and occasions {% endcomment %}
-      <div style="display: flex; flex-direction: column; gap: 24px;">
-        <span class="gold" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em; font-weight: 900; display: block;">
-          {{ section.settings.badge }}
-        </span>
-        <h2 style="font-size: clamp(32px, 6vw, 52px); font-weight: 900; line-height: 1.2;">
-          {{ section.settings.heading | newline_to_br }}
-        </h2>
-        <p class="muted" style="font-size: 17px; line-height: 1.7;">
-          {{ section.settings.description }}
-        </p>
+      <div class="space-y-8 text-right order-2 lg:order-1">
+        <div>
+          <span class="px-4 py-1.5 rounded-full bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest inline-block mb-4 border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.2)]">{{ section.settings.badge }}</span>
+          <h2 class="text-4xl md:text-5xl font-black text-pearl tracking-tight leading-tight mb-6">{{ section.settings.heading | newline_to_br }}</h2>
+          <p class="text-pearl/60 text-lg leading-relaxed">{{ section.settings.description }}</p>
+        </div>
 
-        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px;">
+        <div class="space-y-4">
           {%- for block in section.blocks -%}
-            <div class="card" style="display: flex; gap: 20px; align-items: flex-start; padding: 20px; border-radius: 20px; transition: var(--transition);" {{ block.shopify_attributes }}>
-              <div class="step-card__icon-box" style="width: 44px; height: 44px; border-radius: 12px; font-size: 20px; margin-bottom: 0; display: flex; align-items: center; justify-content: center; shrink-0;">
-                {%- if forloop.index == 1 -%}❤️{%- elsif forloop.index == 2 -%}🎂{%- else -%}💍{%- endif -%}
+            <div class="bg-pearl/5 border border-pearl/10 p-6 rounded-2xl flex gap-6 items-start hover:border-gold/30 hover:bg-gold/5 transition-all duration-300 group" {{ block.shopify_attributes }}>
+              <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 border border-gold/20 group-hover:scale-110 transition-transform">
+                <span class="text-xl">{%- if forloop.index == 1 -%}❤️{%- elsif forloop.index == 2 -%}🎂{%- else -%}💍{%- endif -%}</span>
               </div>
-              <div style="text-align: right;">
-                <h4 style="font-size: 17px; font-weight: 700; margin-bottom: 2px;">{{ block.settings.title }}</h4>
-                <p class="muted" style="font-size: 13px; line-height: 1.4;">{{ block.settings.description }}</p>
+              <div>
+                <h4 class="text-pearl font-bold text-lg mb-2">{{ block.settings.title }}</h4>
+                <p class="text-pearl/60 text-sm leading-relaxed">{{ block.settings.description }}</p>
               </div>
             </div>
           {%- endfor -%}
         </div>
       </div>
 
-      {% comment %} Right side: Immersive Floating 3D Gift Box & Greeting Card {% endcomment %}
-      <div style="position: relative; width: 100%; aspect-ratio: 4/5; border-radius: 40px; overflow: hidden; background: #0A0A0A; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;">
-        
-        {% comment %} Radial Background lighting {% endcomment %}
-        <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 65%); pointer-events: none;"></div>
+      <div class="relative w-full aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-black border border-pearl/10 flex items-center justify-center order-1 lg:order-2 group">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,55,0.15)_0%,_transparent_60%)]"></div>
 
-        <div class="pkg-3d-scene" style="position: relative; width: 320px; height: 320px; perspective: 2000px; transform-style: preserve-3d;">
-          
-          {% comment %} Floating Greeting Card {% endcomment %}
-          <div class="pkg-3d-card" style="position: absolute; z-index: 20; width: 200px; aspect-ratio: 3/4; background: #FDFBF7; color: #1a1a1a; padding: 24px; rounded: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: space-between; transform: translate3d(50px, -40px, 60px) rotateZ(12deg) rotateY(10deg); border-radius: 6px; pointer-events: none; animation: floatCard 6s infinite ease-in-out;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-family: 'Playfair Display', serif; font-size: 9px; font-weight: 900; letter-spacing: 0.15em; color: #888; text-transform: uppercase;">A Gift For You</span>
-              <span style="color: var(--gold); font-size: 14px;">✨</span>
+        <div class="relative w-64 md:w-80 aspect-square [perspective:2000px] [transform-style:preserve-3d]">
+          <div class="absolute z-20 w-48 md:w-56 aspect-[3/4] bg-[#FDFBF7] text-charcoal p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between pointer-events-none animate-[floatCard_6s_infinite_ease-in-out]">
+            <div class="flex justify-between items-center">
+              <span class="font-serif text-[10px] font-black tracking-widest text-charcoal/40 uppercase">A Gift For You</span>
+              <span class="text-gold">✨</span>
             </div>
-            <div style="text-align: center; display: flex; flex-direction: column; gap: 8px;">
-              <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: #333; line-height: 1.3;">"Some moments <br>are meant to <br>last forever."</p>
-              <div style="width: 32px; height: 1px; background: var(--gold); margin: 0 auto;"></div>
+            <div class="text-center space-y-4">
+              <p class="font-serif italic text-xl leading-relaxed">"Some moments<br>are meant to<br>last forever."</p>
+              <div class="w-8 h-px bg-gold mx-auto"></div>
             </div>
-            <div style="text-align: center;">
-              <span style="font-weight: 900; letter-spacing: 0.15em; font-size: 11px; text-transform: uppercase; color: #111;">LumiBrace</span>
+            <div class="text-center">
+              <span class="font-black tracking-widest text-xs uppercase text-charcoal/80">LumiBrace</span>
             </div>
-            {% comment %} Lighting texture {% endcomment %}
-            <div style="position: absolute; inset: 0; background: linear-gradient(to top right, rgba(0,0,0,0.03), transparent, rgba(255,255,255,0.4)); border-radius: 6px; pointer-events: none;"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/40 rounded-xl pointer-events-none"></div>
           </div>
 
-          {% comment %} Floating 3D Gift Box {% endcomment %}
-          <div class="pkg-3d-box" style="position: absolute; z-index: 10; width: 240px; aspect-ratio: 1; transform: translate3d(-30px, 20px, 0) rotateX(22deg) rotateY(-12deg); transform-style: preserve-3d; animation: floatBox 7s infinite ease-in-out 0.5s;">
-            {% comment %} Shadow {% endcomment %}
-            <div style="position: absolute; bottom: -20px; left: 50%; width: 110%; height: 24px; background: rgba(0,0,0,0.8); filter: blur(16px); border-radius: 50%; transform: translateX(-50%) translateZ(-40px); pointer-events: none;"></div>
-
-            {% comment %} Box Base {% endcomment %}
-            <div style="position: absolute; inset: 0; background: #121212; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 0 40px rgba(0,0,0,0.8); transform: translateZ(-20px);">
-              <div style="position: absolute; inset: 16px; bg: rgba(0,0,0,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-                <div style="width: 60px; height: 60px; border-radius: 50%; background: #070707; filter: blur(2px); box-shadow: inset 0 0 10px black;"></div>
+          <div class="absolute z-10 w-56 md:w-64 aspect-square [transform-style:preserve-3d] animate-[floatBox_7s_infinite_ease-in-out_0.5s]">
+            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[110%] h-6 bg-black/80 blur-xl rounded-full translate-z-[-40px]"></div>
+            
+            <div class="absolute inset-0 bg-[#121212] rounded-2xl border border-white/5 shadow-[inset_0_0_40px_rgba(0,0,0,0.8)] translate-z-[-20px]">
+              <div class="absolute inset-4 bg-black/50 rounded-lg flex items-center justify-center">
+                <div class="w-16 h-16 rounded-full bg-[#070707] blur-[2px] shadow-[inset_0_0_10px_black]"></div>
               </div>
             </div>
 
-            {% comment %} Box Lid (raised and rotated) {% endcomment %}
-            <div style="position: absolute; inset: 0; background: #181818; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 15px 40px rgba(0,0,0,0.7); transform: translate3d(8px, -16px, 12px) rotateZ(-3deg); display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-              {% comment %} Ribbon Vertical {% endcomment %}
-              <div style="position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 24px; background: linear-gradient(90deg, #aa7c11, var(--gold), #aa7c11); box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 1;"></div>
-              {% comment %} Ribbon Horizontal {% endcomment %}
-              <div style="position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); h: 24px; height: 24px; background: linear-gradient(180deg, #aa7c11, var(--gold), #aa7c11); box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 1;"></div>
-
-              {% comment %} Center Logo Badge {% endcomment %}
-              <div style="position: relative; z-index: 2; width: 72px; height: 72px; background: #111; border: 1px solid rgba(212,175,55,0.4); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 6px 15px rgba(0,0,0,0.6); transform: translateY(-2px);">
-                <span style="color: var(--gold); font-size: 14px; margin-bottom: 2px;">✨</span>
-                <span style="color: var(--gold); font-weight: 900; font-size: 9px; letter-spacing: 0.1em;">LUMI<span style="font-weight:300; opacity:0.8;">BRACE</span></span>
+            <div class="absolute inset-0 bg-[#181818] rounded-2xl border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.7)] translate-3d-[8px,-16px,12px] -rotate-3 flex flex-col items-center justify-center pointer-events-none">
+              <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-6 bg-gradient-to-r from-[#aa7c11] via-gold to-[#aa7c11] shadow-[0_2px_8px_rgba(0,0,0,0.3)] z-10"></div>
+              <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-6 bg-gradient-to-b from-[#aa7c11] via-gold to-[#aa7c11] shadow-[0_2px_8px_rgba(0,0,0,0.3)] z-10"></div>
+              
+              <div class="relative z-20 w-20 h-20 bg-[#111] border border-gold/40 rounded-lg flex flex-col items-center justify-center shadow-[0_6px_15px_rgba(0,0,0,0.6)] -translate-y-0.5">
+                <span class="text-gold text-lg mb-1">✨</span>
+                <span class="text-gold font-black text-[10px] tracking-widest">LUMI<span class="font-light opacity-80">BRACE</span></span>
               </div>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   </div>
 </section>
 
 <style>
 @keyframes floatCard {
-  0%, 100% {
-    transform: translate3d(45px, -45px, 60px) rotateZ(12deg) rotateY(10deg);
-  }
-  50% {
-    transform: translate3d(55px, -25px, 65px) rotateZ(14deg) rotateY(8deg);
-  }
+  0%, 100% { transform: translate3d(50px, -40px, 60px) rotateZ(12deg) rotateY(10deg); }
+  50% { transform: translate3d(60px, -20px, 65px) rotateZ(14deg) rotateY(8deg); }
 }
 @keyframes floatBox {
-  0%, 100% {
-    transform: translate3d(-30px, 20px, 0) rotateX(22deg) rotateY(-12deg);
-  }
-  50% {
-    transform: translate3d(-30px, 5px, 0) rotateX(25deg) rotateY(-10deg);
-  }
+  0%, 100% { transform: translate3d(-30px, 20px, 0) rotateX(22deg) rotateY(-12deg); }
+  50% { transform: translate3d(-30px, 5px, 0) rotateX(25deg) rotateY(-10deg); }
 }
 </style>
 

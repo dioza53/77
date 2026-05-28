@@ -2,42 +2,58 @@
   LumiBrace Comparison Table Section — high-converting feature comparison list
 {% endcomment %}
 
-<section class="section" style="background-color: var(--bg);">
-  <div class="container">
-    <div class="section-head">
-      <h2>{{ section.settings.heading }}</h2>
-      <p>{{ section.settings.subheading }}</p>
+<section class="py-24 bg-charcoal relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl md:text-5xl font-black text-pearl tracking-tight">{{ section.settings.heading }}</h2>
+      <p class="text-pearl/60 text-lg max-w-2xl mx-auto">{{ section.settings.subheading }}</p>
     </div>
 
-    <div class="comparison-container" style="max-width: 900px; margin: 0 auto; overflow-x: auto; border: 1px solid var(--border); border-radius: 28px; background: var(--bg-card); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
-      <table style="width: 100%; border-collapse: collapse; min-width: 600px; text-align: right; direction: rtl;">
-        <thead>
-          <tr style="background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border);">
-            <th style="padding: 24px; font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">קריטריון השוואה</th>
-            <th style="padding: 24px; font-weight: 900; text-align: center; color: var(--gold); background: var(--gold-soft); width: 35%;">LumiBrace</th>
-            <th style="padding: 24px; font-weight: 700; text-align: center; color: var(--text-muted); width: 30%;">מתחרים זולים</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%- for block in section.blocks -%}
-            <tr style="border-bottom: 1px solid var(--border); transition: var(--transition);" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.02)'" onmouseout="this.style.backgroundColor='transparent'">
-              <td style="padding: 20px 24px; font-weight: 700; font-size: 14px;">{{ block.settings.feature }}</td>
-              <td style="padding: 20px 24px; text-align: center; background: rgba(212, 175, 55, 0.03); border-left: 1px solid rgba(212, 175, 55, 0.05); border-right: 1px solid rgba(212, 175, 55, 0.05);">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                  <span style="color: var(--gold); font-size: 20px;">✔️</span>
-                  <span style="font-weight: 700; font-size: 13px;">{{ block.settings.lumi_desc }}</span>
+    <div class="max-w-4xl mx-auto overflow-hidden rounded-[2rem] border border-pearl/10 bg-black/40 backdrop-blur-md shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-right whitespace-nowrap md:whitespace-normal">
+          <thead>
+            <tr class="border-b border-pearl/10">
+              <th class="p-6 font-black text-xs md:text-sm text-pearl/40 uppercase tracking-widest w-1/3">קריטריון השוואה</th>
+              <th class="p-6 text-center w-1/3 bg-gold/5 border-x border-gold/10">
+                <div class="inline-flex flex-col items-center gap-1">
+                  <span class="text-gold font-black text-lg md:text-xl">{{ shop.name | default: 'LumiBrace' }}</span>
+                  <span class="text-[10px] font-bold text-gold/60 uppercase tracking-widest bg-gold/10 px-2 py-0.5 rounded-full">הבחירה שלנו</span>
                 </div>
-              </td>
-              <td style="padding: 20px 24px; text-align: center; opacity: 0.45;">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                  <span style="font-size: 18px;">❌</span>
-                  <span style="font-size: 13px;">{{ block.settings.other_desc }}</span>
-                </div>
-              </td>
+              </th>
+              <th class="p-6 text-center w-1/3 text-pearl/40 font-bold">מתחרים זולים</th>
             </tr>
-          {%- endfor -%}
-        </tbody>
-      </table>
+          </thead>
+          <tbody class="divide-y divide-pearl/5">
+            {%- for block in section.blocks -%}
+              <tr class="hover:bg-pearl/5 transition-colors group" {{ block.shopify_attributes }}>
+                <td class="p-6 font-bold text-sm md:text-base text-pearl">{{ block.settings.feature }}</td>
+                
+                <td class="p-6 text-center bg-gold/5 border-x border-gold/10 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div class="relative z-10 flex flex-col items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"></path></svg>
+                    </div>
+                    <span class="font-bold text-xs md:text-sm text-pearl">{{ block.settings.lumi_desc }}</span>
+                  </div>
+                </td>
+
+                <td class="p-6 text-center opacity-50 group-hover:opacity-80 transition-opacity">
+                  <div class="flex flex-col items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                    </div>
+                    <span class="text-xs md:text-sm text-pearl">{{ block.settings.other_desc }}</span>
+                  </div>
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

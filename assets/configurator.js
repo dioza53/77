@@ -58,21 +58,47 @@
 
   // Thumbnail clicks
   const thumbs = document.querySelectorAll('[data-thumb-index]');
-  thumbs.forEach(thumb => {
+  let currentThumbIndex = 0;
+  
+  function selectThumb(index) {
+    if (index < 0 || index >= thumbs.length) return;
+    currentThumbIndex = index;
+    const thumb = thumbs[index];
+    thumbs.forEach(t => t.classList.remove('is-active'));
+    thumb.classList.add('is-active');
+    
+    const imgUrl = thumb.getAttribute('data-image-url');
+    if (imgUrl && productImage) {
+      productImage.src = imgUrl;
+    }
+    
+    const counter = document.querySelector('[data-gallery-counter]');
+    if (counter) {
+      counter.textContent = `${index + 1} / ${thumbs.length}`;
+    }
+    
+    // Auto-switch back to product view tab
+    const productTab = document.querySelector('[data-gallery-tab="product"]');
+    if (productTab) productTab.click();
+  }
+
+  thumbs.forEach((thumb, index) => {
     thumb.addEventListener('click', () => {
-      thumbs.forEach(t => t.classList.remove('is-active'));
-      thumb.classList.add('is-active');
-      
-      const imgUrl = thumb.getAttribute('data-image-url');
-      if (imgUrl && productImage) {
-        productImage.src = imgUrl;
-      }
-      
-      // Auto-switch back to product view tab
-      const productTab = document.querySelector('[data-gallery-tab="product"]');
-      if (productTab) productTab.click();
+      selectThumb(index);
     });
   });
+
+  const prevBtn = document.querySelector('[data-gallery-prev]');
+  const nextBtn = document.querySelector('[data-gallery-next]');
+  
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      selectThumb(currentThumbIndex > 0 ? currentThumbIndex - 1 : thumbs.length - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+      selectThumb(currentThumbIndex < thumbs.length - 1 ? currentThumbIndex + 1 : 0);
+    });
+  }
 
   // Retrieve current active radio/select options
   function getSelectedOptions() {

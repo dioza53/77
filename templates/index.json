@@ -1,1 +1,251 @@
-﻿{ "sections": { "hero": { "type": "hero" } }, "order": ["hero"] }
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "הזיכרון שלך,\nתמיד איתך.",
+        "subheading": "צמיד הקרנה יוקרתי המכיל את הרגעים היפים ביותר שלכם. איכות ללא פשרות, עיצוב נצחי ורגש שעובר בכל מבט.",
+        "cta_label": "הזמינו עכשיו",
+        "cta_url": "#design",
+        "video_url": "https://assets.mixkit.co/videos/preview/mixkit-light-particles-floating-in-a-dark-background-10-large.mp4"
+      }
+    },
+    "product_configurator": {
+      "type": "product-configurator",
+      "settings": {
+        "product": "צמיד-lumibrace-signature-הזיכרון-שלך-תמיד-איתך"
+      }
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {
+        "badge": "התהליך שלנו",
+        "heading": "איך הקסם קורה?",
+        "subheading": "3 שלבים פשוטים בדרך לצמיד הכי אישי ומרגש שיהיה לכם אי פעם."
+      },
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "title": "מעלים תמונה",
+            "description": "בוחרים את הרגע הכי מרגש שלכם ומעלים אותו ישירות לאתר. המערכת שלנו תעזור לכם למרכז את התמונה בצורה מושלמת."
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "title": "אנחנו מייצרים",
+            "description": "האמנים שלנו חורטים את התמונה בטכנולוגיית ננו-לייזר בתוך קריסטל HD איכותי, המשובץ בעבודת יד בתוך הצמיד."
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "title": "אתם מקרינים",
+            "description": "הצמידו את העין או השתמשו בפנס הטלפון כדי להקרין את הזיכרון שלכם בגדול. רגע קסום שמלווה אתכם לכל מקום."
+          }
+        }
+      },
+      "block_order": ["step1", "step2", "step3"]
+    },
+    "gift_experience": {
+      "type": "gift-experience",
+      "settings": {
+        "badge": "יותר מסתם תכשיט",
+        "heading": "המתנה שתגרום להם\nלהתרגש באמת.",
+        "description": "אנחנו לא מוכרים צמידים, אנחנו מוכרים דרך לשמור את האנשים שאתם הכי אוהבים קרוב אליכם. בכל פעם שהם יסתכלו לתוך הקריסטל, הם יזכרו בכם ויחייכו."
+      },
+      "blocks": {
+        "occ1": {
+          "type": "occasion",
+          "settings": {
+            "title": "יום האהבה",
+            "description": "הדרך הכי רומנטית להגיד 'אני אוהב אותך' עם רגע קסום ששניכם חולקים."
+          }
+        },
+        "occ2": {
+          "type": "occasion",
+          "settings": {
+            "title": "יום הולדת",
+            "description": "מתנה אישית ומקורית שתשאיר אותם ללא מילים ותלווה אותם בכל יום מחדש."
+          }
+        },
+        "occ3": {
+          "type": "occasion",
+          "settings": {
+            "title": "יום נישואין",
+            "description": "הנציחו את הרגע הגדול והמשמעותי ביותר שלכם בתכשיט יוקרתי שנשמר לנצח."
+          }
+        }
+      },
+      "block_order": ["occ1", "occ2", "occ3"]
+    },
+    "ugc_gallery": {
+      "type": "ugc-gallery",
+      "settings": {
+        "badge": "קהילה של זיכרונות",
+        "heading": "רגעים אמיתיים של לקוחות",
+        "subheading": "הצטרפו לאלפי לקוחות שכבר שומרים את הזיכרונות שלהם קרוב ללב."
+      },
+      "blocks": {
+        "ugc1": {
+          "type": "ugc_item",
+          "settings": {
+            "name": "נועה & איתי",
+            "rating": 5,
+            "review_text": "השקיעה על האגם בקומו - הרגע שבו ידעתי שזה הוא. עכשיו הוא איתי תמיד."
+          }
+        },
+        "ugc2": {
+          "type": "ugc_item",
+          "settings": {
+            "name": "שירה & דניאל",
+            "rating": 5,
+            "review_text": "ירח דבש במלדיביים, אחרי שנתיים שחיכינו לזה. הרגע הזה שווה הכל."
+          }
+        },
+        "ugc3": {
+          "type": "ugc_item",
+          "settings": {
+            "name": "תמר & יונתן",
+            "rating": 5,
+            "review_text": "החיבוק הראשון שלנו מול הים בנעורים. הזיכרון הזה נמצא איתי בכל יום."
+          }
+        },
+        "ugc4": {
+          "type": "ugc_item",
+          "settings": {
+            "name": "ליאל & עומר",
+            "rating": 5,
+            "review_text": "סלפי ספונטני בדרך הביתה, צוחקים על שטות. הכי טוב כשזה הכי פשוט."
+          }
+        },
+        "ugc5": {
+          "type": "ugc_item",
+          "settings": {
+            "name": "מאיה & יואב",
+            "rating": 5,
+            "review_text": "ערב ראש השנה בריו, זיקוקים מעלינו ונשיקה אחת ארוכה. בלתי נשכח."
+          }
+        },
+        "ugc6": {
+          "type": "ugc_item",
+          "settings": {
+            "name": "רוני & אדם",
+            "rating": 5,
+            "review_text": "לילה בחוף, רק אנחנו והירח. הצמיד הזה הוא הסוד הקטן שלנו."
+          }
+        }
+      },
+      "block_order": ["ugc1", "ugc2", "ugc3", "ugc4", "ugc5", "ugc6"]
+    },
+    "our_story": {
+      "type": "our-story",
+      "settings": {}
+    },
+    "comparison_table": {
+      "type": "comparison-table",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "מה לקוחות אומרים"
+      },
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "הצמיד פשוט מושלם! התמונה יוצאת כל כך ברורה וזה מרגש כל פעם מחדש.",
+            "name": "דנה לוי",
+            "location": "תל אביב"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "קניתי לאשתי ליום הנישואין והיא בכתה מהתרגשות. שירות מעולה!",
+            "name": "אבי כהן",
+            "location": "חיפה"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "איכות מדהימה. רואים שזה מוצר פרימיום ולא סתם עוד תכשיט.",
+            "name": "מאיה גולדשטיין",
+            "location": "רעננה"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "heading": "שאלות נפוצות"
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "כמה זמן לוקח המשלוח?",
+            "answer": "המשלוח מגיע תוך 3-5 ימי עסקים לכל חלקי הארץ. משלוח חינם בהזמנה של זוג צמידים."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "איך התמונה נכנסת לצמיד?",
+            "answer": "אנחנו משתמשים בטכנולוגיית הקרנה מתקדמת שמאפשרת לראות את התמונה דרך הקריסטל הקטן בצמיד."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "האם אפשר להחזיר?",
+            "answer": "כן, יש לך 14 יום להחזרה מלאה."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "האם הצמיד עמיד במים?",
+            "answer": "כן! הצמיד עשוי מפלדת אל-חלד 316L, עמיד במים, לא משחיר ולא גורם לאלרגיה."
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "מה המידה של הצמיד?",
+            "answer": "מידה אחת שמתאימה לכולם (One Size Fits All). אורך בסיס של 16 סמ ועוד 5 סמ של שרשרת הארכה, ניתן לכוון בין 16 סמ ל-21 סמ."
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "מה כלול בחבילה?",
+            "answer": "כל הזמנה מגיעה בקופסת מתנה יוקרתית הכוללת את הצמיד, כרטיס ברכה אישי, ומדריך שימוש."
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"]
+    },
+    "contact_form": {
+      "type": "contact-form",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "product_configurator",
+    "how_it_works",
+    "gift_experience",
+    "ugc_gallery",
+    "our_story",
+    "comparison_table",
+    "testimonials",
+    "faq",
+    "contact_form"
+  ]
+}

@@ -84,10 +84,17 @@ button {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Heebo', system-ui, sans-serif;
   line-height: 1.2;
   margin-bottom: 0.5em;
   font-weight: 700;
+}
+
+/* Product configurator headings — match Lovable sans-serif style */
+[data-product] h2,
+[data-product] h3 {
+  font-family: 'Heebo', system-ui, sans-serif;
+  font-style: normal;
 }
 
 .container {

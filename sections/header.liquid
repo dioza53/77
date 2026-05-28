@@ -1,31 +1,31 @@
 <div class="fixed top-0 left-0 right-0 z-50">
   {% if section.settings.announcement_text != blank %}
-  <div role="status" aria-label="הודעה חשובה" class="bg-gold text-charcoal py-1.5 md:py-2 px-4 text-center text-[10px] md:text-sm font-bold tracking-wide">
+  <div role="status" aria-label="הודעה חשובה" style="background-color: #d4af37; color: #121212; padding: 6px 16px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; font-family: 'Heebo', sans-serif;">
     {{ section.settings.announcement_text }}
   </div>
   {% endif %}
-  <header class="transition-all duration-300 bg-charcoal/40 backdrop-blur-sm py-4 md:py-6">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <button aria-label="פתח תפריט" aria-expanded="false" class="p-2 -m-2 lg:hidden text-pearl hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold outline-none rounded-lg" style="color: #f5f5f5;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="header-svg-icon" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+  <header style="transition: all 0.3s; background-color: rgba(18, 18, 18, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); padding: 16px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button aria-label="פתח תפריט" aria-expanded="false" id="mobile-menu-btn" style="padding: 8px; margin: -8px; background: none; border: none; cursor: pointer; display: none; color: #f5f5f5;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block;" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
         </button>
-        <a href="{{ routes.root_url }}" class="text-lg md:text-2xl font-bold tracking-tighter gold-text-gradient whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg px-2">
+        <a href="{{ routes.root_url }}" style="font-size: 24px; font-weight: 900; letter-spacing: -0.05em; white-space: nowrap; text-decoration: none; background: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #d4af37 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">
           LUMIBRACE
         </a>
       </div>
-      <nav aria-label="תפריט ראשי" class="hidden lg:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
+      <nav aria-label="תפריט ראשי" style="display: flex; align-items: center; gap: 32px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;">
         {%- for link in section.blocks -%}
-          <a href="{{ link.settings.url }}" class="hover:text-gold transition-colors focus-visible:text-gold outline-none">{{ link.settings.label }}</a>
+          <a href="{{ link.settings.url }}" style="color: #f5f5f5; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#f5f5f5'">{{ link.settings.label }}</a>
         {%- endfor -%}
       </nav>
-      <div class="flex items-center gap-4 md:gap-6">
-        <a href="{{ section.settings.cta_link | default: '#design' }}" class="hidden md:block px-6 py-2 bg-gold text-charcoal font-bold rounded-full text-sm hover:scale-105 transition-transform focus-visible:ring-2 focus-visible:ring-white outline-none">
+      <div style="display: flex; align-items: center; gap: 24px;">
+        <a href="{{ section.settings.cta_link | default: '#design' }}" style="display: inline-block; padding: 8px 24px; background-color: #d4af37; color: #121212; font-weight: 700; border-radius: 9999px; font-size: 14px; text-decoration: none; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
           {{ section.settings.cta_text | default: 'עצבו עכשיו' }}
         </a>
-        <a href="{{ routes.cart_url }}" aria-label="סל הקניות" class="relative cursor-pointer p-2 -m-2 text-pearl hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold outline-none rounded-full" style="color: #f5f5f5;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="header-svg-icon" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
-          <span class="header-cart-badge" {% if cart.item_count == 0 %}style="display:none"{% endif %} data-cart-count>
+        <a href="{{ routes.cart_url }}" aria-label="סל הקניות" style="position: relative; cursor: pointer; padding: 8px; margin: -8px; color: #f5f5f5; text-decoration: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: block;" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+          <span style="position: absolute; top: -4px; right: -4px; background-color: #d4af37; color: #121212; font-size: 11px; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.4); z-index: 10; {% if cart.item_count == 0 %}display: none;{% endif %}" data-cart-count>
             {{ cart.item_count }}
           </span>
         </a>
@@ -35,32 +35,17 @@
 </div>
 
 <style>
-  .header-svg-icon {
-    width: 24px !important;
-    height: 24px !important;
-    display: block;
-    stroke: #f5f5f5;
-    transition: stroke 0.2s ease;
+  /* Mobile menu button - show only on small screens */
+  @media (max-width: 1023px) {
+    #mobile-menu-btn { display: block !important; }
+    nav[aria-label="תפריט ראשי"] { display: none !important; }
+    a[href*="cta_link"], div[style*="gap: 24px"] > a:first-child { display: none !important; }
   }
-  .header-svg-icon:hover {
-    stroke: #d4af37;
-  }
-  .header-cart-badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    background-color: #d4af37;
-    color: #121212;
-    font-size: 11px;
-    font-weight: 900;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    z-index: 10;
+  /* Announcement bar responsive */
+  @media (min-width: 768px) {
+    div[role="status"] { font-size: 14px !important; padding: 8px 16px !important; }
+    header > div > div:first-child a { font-size: 28px !important; }
+    header { padding: 24px 0 !important; }
   }
 </style>
 

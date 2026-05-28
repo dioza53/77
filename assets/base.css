@@ -60,9 +60,12 @@ body {
   overflow-x: hidden;
 }
 
-img, svg, video {
+img, video {
   max-width: 100%;
   height: auto;
+  display: block;
+}
+svg {
   display: block;
 }
 

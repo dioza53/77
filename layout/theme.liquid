@@ -31,26 +31,7 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'lumibrace-tailwind.css' | asset_url | stylesheet_tag }}
 
-    <!-- Tailwind CDN Fallback for newly added utility classes -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              charcoal: '#1a1a1a',
-              gold: '#D4AF37',
-              pearl: '#F8F6F0',
-              'gold-soft': 'rgba(212, 175, 55, 0.1)',
-            },
-            fontFamily: {
-              sans: ['Heebo', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Removed Tailwind CDN Fallback for stability -->
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
 

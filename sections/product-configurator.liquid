@@ -92,7 +92,7 @@
           <button class="p-3 bg-pearl/5 border border-pearl/10 rounded-full text-pearl/60 hover:text-gold hover:border-gold/50 transition-all group" title="שתפו את המוצר"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 lucide-share-2 w-5 h-5 group-hover:scale-110 transition-transform"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
         </div>
         <div class="flex flex-col gap-2 mb-4">
-          <h2 class="text-3xl md:text-6xl font-black tracking-tighter leading-tight">{{ product.title }}<span class="block text-xl md:text-2xl font-bold text-pearl/40 mt-2 tracking-normal">צמיד הזיכרונות המקורי עם הקרנת תמונה אישית</span></h2>
+          <h2 class="text-3xl md:text-6xl font-black tracking-tighter leading-tight">LumiBrace Signature<span class="block text-xl md:text-2xl font-bold text-pearl/40 mt-2 tracking-normal">צמיד הזיכרונות המקורי עם הקרנת תמונה אישית</span></h2>
         </div>
       <div class="flex items-center gap-4 mb-6">
         <span class="text-4xl md:text-6xl font-black gold-text-gradient drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]" data-price>{{ first_variant.price | money }}</span>
@@ -274,6 +274,27 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-6 h-6"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
           <span>קנו עכשיו ב-50% הנחה</span>
         </button>
+
+        <div class="grid grid-cols-3 gap-4">
+          <div class="flex flex-col items-center text-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-pearl/5 flex items-center justify-center text-pearl/40">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck w-5 h-5"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+            </div>
+            <span class="text-[10px] font-bold text-pearl/40 uppercase tracking-widest">משלוח מהיר</span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-pearl/5 flex items-center justify-center text-pearl/40">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check w-5 h-5"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <span class="text-[10px] font-bold text-pearl/40 uppercase tracking-widest">איכות פרימיום</span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-pearl/5 flex items-center justify-center text-pearl/40">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock w-5 h-5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <span class="text-[10px] font-bold text-pearl/40 uppercase tracking-widest">תשלום מאובטח</span>
+          </div>
+        </div>
 
         <div data-form-error class="form-error-msg hidden"></div>
         </div>

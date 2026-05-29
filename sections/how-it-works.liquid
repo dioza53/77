@@ -1,52 +1,96 @@
 {% comment %}
-  LumiBrace Premium How It Works Section — customizable steps with media (images/videos)
+  LumiBrace Premium How It Works Section — High-Converting, iOS Optimized
 {% endcomment %}
 
-<section id="how-it-works" class="py-24 bg-charcoal relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+<section id="how-it-works" class="py-24 relative overflow-hidden" style="background: radial-gradient(circle at 50% 0%, rgba(212,175,55,0.08) 0%, rgba(18,18,18,1) 70%); background-color: #121212; font-family: Heebo, sans-serif;">
   <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
-      <span class="px-4 py-1.5 rounded-full bg-gold/10 text-gold text-xs font-bold uppercase tracking-widest inline-block mb-4 border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.2)]">{{ section.settings.badge }}</span>
-      <h2 class="text-4xl md:text-5xl font-black text-pearl tracking-tight">{{ section.settings.heading }}</h2>
-      <p class="text-pearl/60 text-lg max-w-2xl mx-auto">{{ section.settings.subheading }}</p>
+    
+    {% comment %} Header Section {% endcomment %}
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-6" style="display: flex; flex-direction: column; align-items: center;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2); border-radius: 999px;">
+        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); animation: pulse 2s infinite;"></div>
+        <span style="color: var(--gold); font-size: 12px; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase;">{{ section.settings.badge }}</span>
+      </div>
+      <h2 style="font-size: clamp(32px, 5vw, 56px); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin: 0;">{{ section.settings.heading }}</h2>
+      <p style="font-size: 18px; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto; line-height: 1.6;">{{ section.settings.subheading }}</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto relative">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-gold/20 to-transparent hidden md:block"></div>
+    {% comment %} Timeline Steps {% endcomment %}
+    <div style="position: relative; max-width: 1000px; margin: 0 auto;">
       
-      {%- for block in section.blocks -%}
-        <div class="relative bg-charcoal/80 backdrop-blur-xl border border-pearl/10 rounded-[2.5rem] p-8 text-center hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-all duration-500 group" {{ block.shopify_attributes }}>
-          <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-2xl bg-gradient-to-br from-gold to-yellow-600 text-charcoal font-black text-xl flex items-center justify-center shadow-lg shadow-gold/20 rotate-3 group-hover:rotate-6 transition-transform">
-            {{ forloop.index }}
-          </div>
-          
-          <div class="w-20 h-20 mx-auto rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center text-gold mb-8 mt-4 group-hover:scale-110 transition-transform duration-500">
-            {%- if forloop.index == 1 -%}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera w-8 h-8"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
-            {%- elsif forloop.index == 2 -%}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gem w-8 h-8"><path d="M6 3h12l4 6-10 13L2 9Z"></path><path d="M11 3v18"></path><path d="m2 9 10 13"></path><path d="M22 9 12 22"></path></svg>
-            {%- else -%}
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flashlight w-8 h-8"><path d="M18 6c0 2-2 2-2 4v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10c0-2-2-2-2-4V2h12z"></path><line x1="6" x2="18" y1="6" y2="6"></line><line x1="12" x2="12" y1="12" y2="12"></line></svg>
-            {%- endif -%}
-          </div>
+      {% comment %} Vertical Line for Mobile {% endcomment %}
+      <div style="position: absolute; top: 0; bottom: 0; right: 50%; width: 2px; background: linear-gradient(to bottom, rgba(212,175,55,0.5), rgba(212,175,55,0.1), transparent); transform: translateX(50%); z-index: 1;" class="md:hidden"></div>
+      
+      {% comment %} Horizontal Line for Desktop {% endcomment %}
+      <div style="position: absolute; top: 40px; left: 10%; right: 10%; height: 2px; background: linear-gradient(to left, rgba(212,175,55,0.5), rgba(212,175,55,0.1), transparent); z-index: 1;" class="hidden md:block"></div>
 
-          <h3 class="text-xl font-black text-pearl mb-4">{{ block.settings.title }}</h3>
-          <p class="text-pearl/60 text-sm leading-relaxed mb-6">{{ block.settings.description }}</p>
-
-          {%- if block.settings.video_url != blank or block.settings.image != blank -%}
-            <div class="mt-8 rounded-2xl overflow-hidden aspect-square relative group-hover:shadow-2xl transition-shadow border border-pearl/10">
-              {%- if block.settings.video_url != blank -%}
-                <video src="{{ block.settings.video_url }}" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
-              {%- elsif block.settings.image != blank -%}
-                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy" class="w-full h-full object-cover">
-              {%- endif -%}
+      <div class="grid md:grid-cols-3 gap-12 md:gap-8 relative z-10">
+        {%- for block in section.blocks -%}
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px;" {{ block.shopify_attributes }}>
+            
+            {% comment %} Number / Icon Container {% endcomment %}
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: #121212; border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.2); display: flex; align-items: center; justify-content: center; position: relative;">
+              <div style="position: absolute; inset: -4px; border-radius: 50%; background: var(--gold); filter: blur(12px); opacity: 0.3; z-index: -1;"></div>
+              <span style="font-size: 32px; font-weight: 900; color: var(--gold);">{{ forloop.index }}</span>
             </div>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
+
+            {% comment %} Content Card {% endcomment %}
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 32px; padding: 32px 24px; position: relative; overflow: hidden; width: 100%; height: 100%; transition: transform 0.3s, box-shadow 0.3s;" class="hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] group">
+              
+              {% comment %} Giant background number {% endcomment %}
+              <div style="position: absolute; bottom: -20px; left: -10px; font-size: 150px; font-weight: 900; color: rgba(255,255,255,0.02); line-height: 1; pointer-events: none; user-select: none;">{{ forloop.index }}</div>
+              
+              <h3 style="font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 12px; position: relative; z-index: 2;">{{ block.settings.title }}</h3>
+              <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; position: relative; z-index: 2; margin: 0;">{{ block.settings.description }}</p>
+
+              {%- if block.settings.video_url != blank or block.settings.image != blank -%}
+                <div style="margin-top: 24px; border-radius: 20px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.1); width: 100%; aspect-ratio: 1; z-index: 2;">
+                  {%- if block.settings.video_url != blank -%}
+                    <video src="{{ block.settings.video_url }}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                  {%- elsif block.settings.image != blank -%}
+                    <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+            </div>
+            
+          </div>
+        {%- endfor -%}
+      </div>
     </div>
+
+    {% comment %} Conversion Booster - Bottom CTA {% endcomment %}
+    <div style="margin-top: 64px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+      <a href="#design" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 48px; background: var(--gold); color: #121212; font-size: 20px; font-weight: 900; border-radius: 999px; text-decoration: none; box-shadow: 0 15px 40px rgba(212,175,55,0.3); transition: all 0.3s; width: 100%; max-width: 400px; position: relative; overflow: hidden;" class="hover:scale-[1.02] active:scale-[0.98]">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.2); transform: translateX(-100%); transition: transform 1s ease-in-out;" class="btn-buy-shine"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+        <span>עצבו את הצמיד שלכם</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.5); font-size: 13px; font-weight: bold;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #4ade80;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        אחריות מלאה על איכות התמונה
+      </div>
+    </div>
+
   </div>
 </section>
+
+<style>
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
+.btn-buy-shine {
+  animation: shine 3s infinite linear;
+}
+@keyframes shine {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  20% { transform: translateX(200%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+</style>
 
 {% schema %}
 {

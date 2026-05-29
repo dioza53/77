@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_bg": "#1a1a1a",
@@ -25,7 +34,10 @@
             }
           }
         },
-        "block_order": ["link1", "link2"]
+        "block_order": [
+          "link1",
+          "link2"
+        ]
       },
       "footer": {
         "type": "footer",
@@ -55,7 +67,18 @@
             }
           }
         },
-        "block_order": ["fl1", "fl2", "fl3"]
+        "block_order": [
+          "fl1",
+          "fl2",
+          "fl3"
+        ]
+      }
+    },
+    "blocks": {
+      "21474836472147483647": {
+        "type": "shopify://apps/ecomposer-landing-page-builder/blocks/app-embed/a0fc26e1-7741-4773-8b27-39389b4fb4a0",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
